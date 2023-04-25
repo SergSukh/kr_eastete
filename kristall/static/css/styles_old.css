@@ -1,0 +1,175 @@
+/*overall block*/
+/* roboto-100 - cyrillic */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+      src: local(''),
+          url('../fonts/roboto-v27-cyrillic-100.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/roboto-v27-cyrillic-100.woff') format('woff'), /* Modern Browsers */
+  }
+  
+  /* roboto-regular - cyrillic */
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('../fonts/roboto-v27-cyrillic-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/roboto-v27-cyrillic-regular.woff') format('woff'), /* Modern Browsers */
+  }
+  
+  /* Muller-regular - cyrillic */
+  /* Regular */
+  @font-face {
+    font-family: 'Muller';
+    src: local('Muller'),
+         url('../fonts/Muller-Regular.ttf') format('truetype'),
+         url('../fonts/Muller-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Muller-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  /* Medium */
+  @font-face {
+    font-family: 'Muller';
+    src: local('Muller'),
+         url('../fonts/Muller-Medium.ttf') format('truetype'),
+         url('../fonts/Muller-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Muller-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  /* Bold */
+  @font-face {
+    font-family: 'Muller';
+    src: local('Muller'),
+         url('../fonts/Muller-Bold.ttf') format('truetype'),
+         url('../fonts/Muller-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Muller-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+}
+
+html {
+    font-family: 'Muller', 'Roboto', sans-serif;
+    background: #E5E5E5;
+  }
+
+.user-decorated {
+    font-size: small;
+    padding: 2px 6px;
+    border-radius: 7px;
+}
+
+ul {
+    list-style: none;
+}
+
+.my-info,
+.nav-authentificated {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.my-form,
+.user-authentificated {
+    justify-content: space-between;
+    padding: 3px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.active,
+.navbar,
+.my-form:hover,
+.my-form:active,
+.user-authentificated:active,
+.user-authentificated:hover {
+    color: rgb(135, 206, 250);
+    background-color: #fff;
+    border: 1px solid rgb(135, 206, 250);
+}
+
+.my-link:not(:last-child)
+.main-info:not(:last-child),
+.my-form:not(:last-child),
+.user-authentificated:not(:last-child) {
+    margin-right: 25px;
+}
+
+.h1,
+.h3 {
+    text-align: center;
+}
+
+.my-links,
+.main-row {
+    display: flex;
+    flex-direction: row;
+    flex-flow: nowrap;
+}
+
+.main-info {
+    flex: 1 1 calc(100% / 2 - 25px);
+}
+
+.my-link {
+    flex: 1 1 calc(100% / 4 - 75px)
+}
+
+.link-iteams {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.link-iteam {
+    display: inline-block;
+}
+
+.nav-user {
+    color:rgb(6, 10, 243);
+}
+
+img {
+    max-width: 100%;
+}
+
+/*main*/
+/*special offers*/
+.special {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 40px;
+    color: #333;
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.special-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+}
+
+.special-column-items {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left center;
+    border-radius: 15px;
+}

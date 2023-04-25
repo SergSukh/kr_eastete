@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% load cache %}
+
+  {% block title %} 
+    АН "Кристалл":
+  {% endblock title %}
+
+  {% block content %}
+    <div class="container py-5">     
+      <h1>АН "Кристалл":</h1>
+      <!-- Special offers block -->
+      <section class="main-content main-content-special-offerts">
+        <div class="container">
+          <h2 class="header-content">Спецпредложения</h2>
+            <ul class="special">
+              <li class="special-row-item">
+                <ul class="special-column">
+                  <li class="special-column-items offer1">
+                    <article class="main-content-special">
+                      <div class="main-content-special-list">
+                        <h3 class="main-content-sp-device">Офисные помещения</h3>
+                        <p class="main-content-sp-price">от 55 000 р</p>
+                        <a class="main-content-sp-link" href="">Подробнее</a>
+                      </div>
+                    </article>
+                  </li>
+                  <li class="special-column-items offer2">
+                    <article class="main-content-special">
+                      <div class="main-content-special-list">
+                        <h3 class="main-content-sp-device">Складские помещения</h3>
+                        <p class="main-content-sp-price">от 30 000 р</p>
+                        <a class="main-content-sp-link" href="">Подробнее</a>
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+              </li>
+              <li class="special-row-item Luxe">
+                <article class="main-content-special">
+                  <div class="main-content-special-list">
+                    <h3 class="main-content-sp-device">Производственный кластер</h3>
+                    <p class="main-content-sp-price">от 5 000 р</p>
+                    <a class="main-content-sp-link" href="">Подробнее</a>
+                  </div>
+                </article>
+              </li>
+            </ul>
+        </div>
+      </section>
+    </div>
+        <!--About Us block-->
+        <section class="main-content AbtUs">
+          <div class="container">
+            <h2 class="header-content">О нас</h2>
+            <p class="main-content-text AbtUs">
+              Идейные соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс
+              внедрения и модернизации системы обучения кадров, соответствует насущным потребностям. Идейные соображения
+              высшего порядка, а также дальнейшее развитие различных форм деятельности представляет собой интересный
+              эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся
+              структура организации требуют определения и уточнения существенных финансовых и административных условий.
+            </p>
+          </div>
+        </section>
+    
+        <!--Service block-->
+        <section class="main-content main-content service">
+          <div class="container">
+            <h2 class="header-content">Услуги</h2>
+            <ul class="main-content-service">
+              <li class="main-content-srvcblock exclsv">
+                <div class="main-content-srvc">
+                  <a class="main-content-srvclink" href=""><h4>Эксклюзивное обслуживание <code>&gt</code></h4></a>
+                  <p class="main-content-text">Равным образом постоянный количественный рост и сфера нашей активности</p>
+                </div>
+              </li>
+              <li class="main-content-srvcblock  bankethall">
+                <div class="main-content-srvc">
+                  <a class="main-content-srvclink" href=""><h4>Подбор помещения в точном соответствии с Вашими требованиями<code>&gt</code></h4></a>
+                  <p class="main-content-text">
+                    Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм.
+                  </p>
+                </div>
+              </li>
+              <li class="main-content-srvcblock  sauna">
+                <div class="main-content-srvc">
+                  <a class="main-content-srvclink" href=""><h4>Полный комплекс услуг по подготовке сделок<code>&gt</code></h4></a>
+                  <p class="main-content-text">
+                    Не следует, однако забывать, что начало повседневной работы по формированию позиции
+                  </p>
+                </div>
+              </li>
+              <li class="main-content-srvcblock parking">
+                <div class="main-content-srvc">
+                  <a class="main-content-srvclink" href=""><h4>Охраняемые автомобильные стоянки <code>&gt</code></h4></a>
+                  <p class="main-content-text">
+                    Не следует, однако забывать, что начало повседневной работы по формированию позиции
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      <!--Contacts list block-->
+      <section class="main-content main-contacts">
+        <div class="container">
+          <h2 class="header-content">Контакты</h2>
+          <ul class="contacts">
+            <li class="contacts-list">
+              <table class="contacts-iteams">
+                <tbody>
+                  <tr class="contact-row">
+                    <td class="contact-title">
+                      Адрес
+                    </td>
+                    <td class="contact-content">
+                      Самара, улица ХХ11 партсъезда, дом 5 строение 4, офис 2
+                    </td>
+                  </tr>
+                  <tr class="contact-row">
+                    <td class="contact-title">
+                      Телефоны
+                    </td>
+                    <td class="contact-content">
+                      <a class="contact-content-link" href="tel:+74995356434">+7 (499) 535-64-34</a><br>
+                      <a class="contact-content-link" href="tel:+74950050544">+7 (495) 005-05-44</a>
+                    </td>
+                  </tr>
+                  <tr class="contact-row">
+                    <td class="contact-title">
+                      E-mail
+                    </td>
+                    <td class="contact-content">
+                      <a class="contact-content-link" href="mailto:lg.oona@mail.ru">lg.oona@mail.ru</a>
+                      <p class="contact-content-link-rem">по вопросам бронирования</p>
+                      <a class="contact-content-link" href="mailto:hotels.ln@mail.ru">hotels.ln@mail.ru</a>
+                      <p class="contact-content-link-rem">по вопросам сотрудничества</p>
+                    </td>
+                  </tr>
+                  <tr class="contact-row">
+                    <td class="contact-title">
+                      График
+                    </td>
+                    <td class="contact-content">
+                      Понедельник -пятница, <br>с 10:00 до 19:00
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="contact-flesh" colspan="2">
+                      <a class="contact-flesh-btn" href="http://">Построить маршрут</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="contacts-img">
+              <a href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+
+{% endblock %}

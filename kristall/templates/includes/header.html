@@ -1,0 +1,59 @@
+{% load static %}
+<header class="header">
+  <nav class="navbar navbar-light" style="background-color: lightgrey">
+    <ul class="navbar-menu">
+      <li class="nav-item">
+        <a class="navbar-brand" href="{% url 'units:index' %}">
+          <img src="{% static 'img/kristall_1.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+          <span style="color:blue">Кристалл</span></a>
+        </a>
+      </li>
+      <li class="nav-item my-info">
+        <a class="my-form {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}" href="#">О нас</a>
+      </li>
+      <li class="nav-item my-info">
+        <a class="my-form {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}" href="#">Объекты</a>
+      </li>
+      <li class="nav-item my-info">
+        <a class="my-form {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}" href="#">Этапы</a>
+      </li>
+      <li class="nav-item my-info">
+        <a class="my-form {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}" href="#">Отзывы</a>
+      </li>
+      <li class="nav-item my-info">
+        <a class="my-form {% if request.resolver_match.view_name  == 'about:author' %}active{% endif %}" href="#">Контакты</a>
+      </li>
+      <li class="nav-item">
+        <div class="nav-authentificated">
+          <ul>
+            {% if user.is_authenticated %}
+            <li class="nav-item"> 
+              <a class="user-authentificated {% if request.resolver_match.view_name  == 'units:unit_create' %}active{% endif %}" href="{% url 'units:post_create' %}">Новая запись</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="user-authentificated {% if request.resolver_match.view_name  == 'password_reset' %}active{% endif %}" href="{% url 'password_reset' %}">Изменить пароль</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="user-authentificated {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
+            </li>
+            <li class="nav-user">
+              Пользователь:  {{ user.username }}
+            <li>
+            
+            {% else %}
+            <li>
+              <a class="user-authentificated {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
+            </li>
+            <li>
+              <a class="user-authentificated {% if request.resolver_match.view_name  == 'users:signup' %}active{% endif %}" href="{% url 'users:signup' %}"> Зарегистрироваться </a>
+            </li>
+            {% endif %}
+            </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <style>
+
+  </style>      
+</header>
