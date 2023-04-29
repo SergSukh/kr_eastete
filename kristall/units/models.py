@@ -4,7 +4,19 @@ from django.db import models
 class Unit(models.Model):
     name = models.CharField('Название объекта', max_length=50)
     square = models.FloatField('Площадь')
-    published = models.BooleanField('Опубликовано', default=False)
+
+    def __str__(self) -> str:
+        description = '{}/{}'.format(self.name, self.square)
+        return description
+
+    def get_adress(self) -> str:
+        return self.adress
+
+    def is_published(self) -> bool:
+        print(self.published)
+        if self.published is None:
+            return True
+        return False
 
 
 class Citys(models.Model):
@@ -37,6 +49,10 @@ class Adress(models.Model):
     flat = models.ForeignKey(
         Flats, on_delete=models.CASCADE, related_name='adresses')
 
+    class Meta:
+        verbose_name = 'Адрес'
+        verbose_name_plural = 'Адреса'
+
 
 class Image(models.Model):
     unit = models.ForeignKey(
@@ -47,3 +63,19 @@ class Image(models.Model):
         blank=True,
         null=True
     )
+
+
+class Published(models.Model):
+    unit = models.ForeignKey(
+        Unit,
+        on_delete=models.CASCADE,
+        related_name='published'
+    )
+    pub_date = models.DateTimeField(
+        'Время размещения',
+        auto_created=True)
+
+    def __str__(self) -> str:
+        if self.pub_date:
+            return self.pub_date
+        return False

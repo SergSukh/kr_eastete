@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block title %} 
+    Объекты:
+  {% endblock title %}
+
+  {% block content %}
+  {% load thumbnail %}
+    <div class="container section-hero__container">
+        <h1 class="header-content">Объекты:</h1>
+        <ul class="main-content-units">
+            {% for unit in page_obj %}
+                <li class="main-content-unit-item">
+                    {% thumbnail unit.image "1200x900" crop="top" upscale=True as im %}
+                    <img class="main-content-unit-img" src="{{ im.url }}">
+                    {% endthumbnail %} 
+                    <div class="main-content-unit">
+                        <div class="price-starrange">
+                            <div class="main-content-unit-price"> <strong>4 698 p.</strong>/кв. метр</div>
+                        </div>
+                        <h3 class="main-content-unit-rem">{{ unit.name }}</h3>
+                        <div class="main-content-unit-place">{{ unit.square }}</div>
+                        <button class="main-unit-button" href="">Номера</button>
+                    </div>
+                </li>
+            {% endfor%}
+        </ul>
+    </div>
+{%endblock%}

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'users',
     'core',
     # frameworks
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

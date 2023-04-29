@@ -22,11 +22,14 @@ class User(AbstractUser):
         unique=True,
         validators=[username_validator],
     )
-    first_name = models.CharField(max_length=150, blank=True)
-    last_name = models.CharField(max_length=150, blank=True)
+    first_name = models.CharField('Имя', max_length=150, blank=True)
+    last_name = models.CharField('Фамилия', max_length=150, blank=True)
     email = models.EmailField('Email', max_length=254, unique=True)
     phone = models.IntegerField(
-        'Phone', unique=True, validators=[PhoneValidator()])
+        'Телефон +7(ХХХ) ХХХ ХХ ХХ',
+        unique=True,
+        validators=[PhoneValidator()],
+        )
     role = models.CharField(
         'Роль пользователя',
         choices=roles,

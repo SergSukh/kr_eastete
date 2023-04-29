@@ -108,7 +108,7 @@ input, textarea {
 }
 
 .header__nav-item:last-child {
-  margin-right: 79.8px;
+  margin-right: auto;
 }
 
 .header__nav-item:not(:last-child) {
@@ -528,10 +528,6 @@ input, textarea {
 
 .footer__form-checkbox {
   margin-right: 0px;
- /* left: 290px; */
- /* position: absolute; */
- /* z-index: -1;
- opacity: 0; */
 }
 
 .footer__form-bottom {
@@ -552,18 +548,6 @@ input, textarea {
   background-color: #414141;
   resize: none;
 }
-/*
-.footer__form-checkbox:focus .footer__form-checkbox-decor path {
-  stroke: #97EE3F;
-}
-
-.footer__form-checkbox .footer__form-label .footer__form-checkbox-decor path {
-  stroke: #222;
-} */
-
-/* .footer__form-label:hover .footer__form-checkbox-decor path {
-  stroke: #97EE3F;
-} */
 
 .header__logo-link:focus {
   outline-color: var(--main-color);
@@ -781,6 +765,67 @@ input, textarea {
     max-width: 760px;
   }
 }
+/* Units_list */
+.main-content-units {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.main-content-unit-items {
+  flex: 1 1 30%;
+  margin-bottom: 23px;
+  background-color: #fff;
+  border-radius: 15px;
+}
+
+.main-content-unit-items:not(:nth-child(3n)) {
+  margin-right: 23px;
+}
+
+.main-content-unit-img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.main-content-unit-iteams:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 40px;
+}
+
+.main-content-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.price-starrange {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.main-content-unit-price {
+  flex: 1 1 60%;
+  display: flex;
+  flex-flow: row nowrap;
+  /*margin: auto;*/
+}
+
+.main-content-unit-rem {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000000;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
 
 @media (max-width:940px) {
   .footer__list {
@@ -1095,12 +1140,20 @@ input, textarea {
   .section-aboutus__paragraf {
     margin-bottom: 47.5px;
   }
+
+  .main-content-items {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 @media (min-width:321px) and (max-width:1380px) {
   .section-aboutus__item:nth-child(1) {
     margin-bottom: 31px;
     }
+    .main-content-items {
+      display: flex;
+      flex-dir
 }
 
 @media (min-width:769px) and (max-width:1380px) {
@@ -1265,3 +1318,4 @@ input, textarea {
     padding-top: 64vw;
   }
 }
+

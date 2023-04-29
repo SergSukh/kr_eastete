@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.paginator import Paginator
 
 from .models import Unit
+from .forms import UnitForm, CitysForm, StreetsForm, BuildingsForm, FlatsForm
 
 
 def pages(request, unit_list):
@@ -15,13 +16,41 @@ def pages(request, unit_list):
 
 
 def index(request):
+    return render(request, 'units/index.html')
+
+
+def units_list(request):
     units_list = Unit.objects.all()
-    context = {
-        'page_obj': pages(request, units_list),
-    }
-    return render(request, 'units/index.html', context)
+    return render(
+        request,
+        'units/units_list.html',
+        {'page_obj': pages(request, units_list)}
+    )
 
 
 @login_required
-def create_unit(request):
-    pass
+def create_unit(request, unit=None):
+    forms = [
+        UnitForm(request.POST or None, instance=unit),
+        CitysForm(request.Post or None, instance=unit.adress.city),
+        StreetsForm(request.Post or None, instance=unit.adress.street),
+        BuildingsForm(request.Post or None, instance=unit.adress.building),
+        FlatsForm(request.Post or None, instance=unit.adress.flats)
+    ]
+    for form in forms:
+        if not form.is_valid():
+            context = {
+                'forms': forms,
+                'is_edit': True if unit else False
+            }
+            return render(request, 'units/unit_create.html', context)
+        form.save()
+        return redirect(request, 'units/units_list')
+
+
+@login_required
+def units_edit(request, unit_id):
+    unit = get_object_or_404(Unit, id=unit_id)
+    if request.user.role == 'moderator' or request.user.role == 'admin':
+        return create_unit(request, unit)
+    return redirect(request, 'units/units_list')
