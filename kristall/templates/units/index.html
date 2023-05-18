@@ -11,7 +11,7 @@
       <div class="container section-hero__container" style="background-image: url({% static './img/main_img.jpg' %});">
         <h1 class="head">Все операции с недвижимостью</h1>
         <p class="section-hero__paragraf">Делаем операции с недвижимостью простыми</p>
-        <button class="btn-style section-hero__btn">Подобрать объект</button>
+        <a class="btn-style section-hero__btn" href="{% url 'units:units_list' %}">Подобрать объект</a>
       </div>
     </section>
 
@@ -96,48 +96,56 @@
         <h2 class="head2 section-questions__head2">Часто задаваемые вопросы</h2>
         <ul class="section-questions__list">
           <li class="section-questions__item">
-            <div class="section-questions__question">
+            <div class="accordion__header section-questions__question">
               <h3 class="head3 section-questions__question-head">Я выбираю между разными компаниями. В чём ваше отличие?</h3>
-              <svg class="section-questions__question-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="section-questions__question-icon dropdown" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="25" cy="25" rx="25" ry="25" fill="#ECECEC"/>
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z" fill="#666666"/>
               </svg>
             </div>
-            <div class="section-questions__answer"></div>
+            <div class="accordion-body">
+              Наш коллектив состоит исключительно и только из специалистов, прошедших профессиональную подготовку. Это подтверждается сертификатами и дипломами установленной формы. (С ними Вы можете ознакомиться у нас в офисе.) Другими словами, посторонних людей, которые нахватались поверхностных знаний, провели две-три сделки и теперь пытаются быстро кому-то что-то «впарить», у нас просто нет и быть не может! Это, первое отличие!
+              Во-вторых, наше кредо – результат! А потому мы не набираем безумное количество объектов недвижимости в базу, поскольку это сразу отрицательно скажется на результативности. Поскольку заниматься должным образом каким-то огромным, но зато пафосно звучащим, количеством объектов просто не под силу никому. Нами же реализуется только тщательный, в максимальной степени педантичный, подход при предварительной проверке и оценке объекта. Скажем честно, далеко не всех объекты проходят проверки. При этом мы можем сами устранить недочёты и проблемы, либо рекомендуем пути их решения непосредственно собственнику объекта для самостоятельного устранения.
+              Тщательный входной контроль на юридическую чистоту позволяет в последствии предоставлять клиенту исключительно точную и исчерпывающую информацию. Оптимальное количество объектов у каждого из сотрудников в работе это порядка 20-30. Так как, повторимся, масс-маркет – это не наш конёк!  Мы работаем исключительно на результат и это позволяет нам стабильно держаться на уровне 9к10, то есть 9 из 10-ти объектов мы реализуем (продаём/сдаём) в поставленные сроки.
+              В-третьих, пафосом мы тоже не занимаемся. Показуха и пускание пыли в глаза – это не про нас!
+              Наша задача – помочь Вам в решении Ваших проблем, связанных с недвижимостью, как-то: продажа, сдача в аренду, поиск и последующее приобретение объекта недвижимости по требуемым критериям, доверительное управление объектами недвижимости, юридическое сопровождение любого или всех этапов по перечисленным моментам.
+            </div>
           </li>
           <li class="section-questions__item">
-            <div class="section-questions__question">
+            <div class="accordion__header section-questions__question">
               <h3 class="head3 section-questions__question-head">У меня есть объект недвижимости. Но, по нему есть несколько нюансов... Сможем ли мы их устранить<span class="section-questions__head3-spec">/</span> решить?</h3>
               <svg class="section-questions__question-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="25" cy="25" rx="25" ry="25" fill="#ECECEC"/>
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z" fill="#666666"/>
               </svg>
             </div>
-            <div class="section-questions__answer"></div>
+            <div class="accordion-body">
+              Изменить на «У меня есть объект недвижимости. Но, по нему есть несколько нюансов... Сможем ли мы их устранить/решить?»
+              Да, этим мы тоже занимаемся, оказываем полную юридическую поддержку. Присылайте имеющиеся документу по объекту, будем разбираться! Далее, дадим Вам карту действий: либо мы решаем имеющиеся проблемы, либо исчерпывающе Вас консультируем и дальше Вы сами их устраняете. В зависимости от Вашей загруженности, возможностей и желания.
+            </div>
           </li>
           <li class="section-questions__item">
-            <div class="section-questions__question">
+            <div class="accordion__header section-questions__question">
               <h3 class="head3 section-questions__question-head">Могу ли я делегировать вам работу <span class="section-questions__head3-spec">/</span> согласование <wbr/>с подрядчиком <span class="section-questions__head3-spec">/</span> организацией?</h3>
-              <svg class="section-questions__question-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="section-questions__question-icon" data-formset-add-form width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="25" cy="25" rx="25" ry="25" fill="#ECECEC"/>
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z" fill="#666666"/>
               </svg>
             </div>
-            <div class="section-questions__answer"></div>
-          </li>
-          <li class="section-questions__item">
-            <div class="section-questions__question">
-              <h3 class="head3 section-questions__question-head">Могу ли я вернуть деньги <wbr/>на каком-либо из этапов работ?</h3>
-              <svg class="section-questions__question-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="25" cy="25" rx="25" ry="25" fill="#ECECEC"/>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z" fill="#666" transform="rotate(0 25 25)"/>
-              </svg>
-            </div>
-            <div class="section-questions__answer"></div>
+            <div class="accordion-body">Мы работаем на перспективу и ценим взаимоотношения с каждым из наших клиентов!</div>
           </li>
         </ul>
       </div>
     </section>
   </main>
-
+<script>
+  this.addEventListener('click', (e) => {
+    const elHeader = e.target.closest('.accordion__header');
+    if (!elHeader) {
+      return
+      console.log('Element not find');
+    }
+    elHeader.parentElement.classList.toggle('body_show');
+  });
+</script>
 {% endblock %}

@@ -27,7 +27,8 @@ class User(AbstractUser):
     email = models.EmailField('Email', max_length=254, unique=True)
     phone = models.IntegerField(
         'Телефон +7(ХХХ) ХХХ ХХ ХХ',
-        unique=True,
+        blank=True,
+        null=True,
         validators=[PhoneValidator()],
         )
     role = models.CharField(

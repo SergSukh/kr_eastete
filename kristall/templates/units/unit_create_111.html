@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block title %} 
+    {{ unit }}
+  {% endblock title %}
+
+  {% block content %}
+    <div class="container section-hero__container">
+      <h1 class="header-content">
+        {% if is_edit %}
+          Редактируем объект: {{ unit }}
+        {% else %}
+          Создание объекта:
+        {% endif %}
+      </h1>
+
+            <h5 class="unit-head title" style="display: None">{{form.name.label}}: {{form.name}}</h5>
+            <div class="card-body">
+              {% if form.errors %}
+                  {% for field in form %}
+                    {% for error in field.errors %}            
+                      <div class="alert alert-danger">
+                        {{ error|escape }}
+                      </div>
+                    {% endfor %}
+                  {% endfor %}
+                  {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                      {{ error|escape }}
+                    </div>
+                  {% endfor %}
+              {% endif %}
+              
+              <form method="post" href="{% url 'units:unit_create' %}" enctype="multipart/form-data">
+                {% csrf_token %} 
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary">
+                    {% if is_edit %}
+                      Сохранить
+                    {% else %}
+                      Добавить
+                    {% endif %}
+                  </button>
+                <div class="form-group row my-3 p-3">
+                  <label for="id_description">
+                    {{ form.description.label }}               
+                    <span class="required text-danger" >*</span>                  
+                  </label>
+                  {{ form.description }}
+                  <small id="id_text-help" class="form-text text-muted">
+                    {{ form.description.help_text|safe }}
+                  </small>
+                </div>      
+                <div class="form-group row my-3 p-3">
+                  <label for="id_city">
+                    {{ form.city.label }}                
+                  </label>
+                   {{ form.city }}
+                  <small id="id_group-help" class="form-text text-muted">
+                    {{ form.city.help_text|safe }}
+                  </small>
+                </div>
+                <div class="form-group row my-3 p-3">
+                  <label for="id_street">
+                    {{ form.street.label }}                
+                  </label>
+                   {{ form.street }}
+                  <small id="id_street-help" class="form-text text-muted">
+                    {{ form.street.help_text|safe }}
+                  </small>
+                </div>
+            <fieldset class="images-form">
+            {{ images.management_form }}
+            {% for i_form in images %}
+              <div class="unit-image">
+                {{ i_form.label }} ==
+                {{ i_form }}
+              </div>
+            {% endfor %}
+            <button id="add-a-form" type="button" data-formset-add-form>Добавить изображение</button>  
+          </fieldset>
+            
+        </fieldset>
+      </form>
+    </div>
+<!-- Скрипт управления -->
+<script>
+  let imageForm = document.querySelectorAll(".unit-image")
+  let containerImages = document.querySelector(".images-form")
+  let addButtonImage = document.querySelector("#add-a-form")
+  let totalForms = document.getElementById("id_form-TOTAL_FORMS")
+  
+  let formNum = imageForm.length-1
+    addButtonImage.addEventListener('click', addForm)
+
+  function addForm(e){
+      e.preventDefault()
+
+      let newForm = imageForm[0].cloneNode(true)
+      let formRegex = RegExp(`form-(\\d){1}-`,'g')
+      
+      formNum++
+      newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+      containerImages.insertBefore(newForm, addButtonImage)
+
+      totalForms.setAttribute('value', `${formNum+1}`)
+  }
+
+</script>
+{%endblock%}

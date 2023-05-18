@@ -138,4 +138,4 @@ LOGIN_REDIRECT_URL = 'units:index'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-UNITS_IN_PAGE = 10
+UNITS_IN_PAGE = 12

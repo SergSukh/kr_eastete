@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block title %} 
+    {{ unit }}
+  {% endblock title %}
+
+  {% block content %}
+    <div class="container section-hero__container">
+        <h1 class="header-content">{{ unit }}:</h1>
+        {% if request.user.is_staff %}
+        <a href="{% url 'units:unit_publicate' unit.id %}">
+          {% if unit.is_published %}
+            Опубликовано: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации..
+          {% else %}
+            Опубликовать..
+          {% endif %}
+        </a>
+        {% endif %}
+      </div>
+        <div class="unit-adress">Адрес: {{ unit.adress }}</div>
+        <div class="unit-square">Площадь: {{ unit.square }}</div>
+        <div class="unit-description">Опиcание: {{ unit.description }}</div>
+        <div class="unit-price">Цена: {{ unit.price }}</div>
+        {% for image in unit.imgs %}
+            <div class="main-content-unit-img"  style="background-image: url({{image.url}})">AН Кристалл</div>
+        {% endfor %}
+        {% if request.user.is_staff %}
+            <a class="btn-style section-hero__btn" href="{% url 'units:unit_edit' unit.id %}"> Редактировать объект</a>
+        {% endif %}
+    </div>
+{%endblock%}

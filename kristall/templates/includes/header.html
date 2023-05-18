@@ -26,8 +26,14 @@
           <li class="header__nav-item">
             <a class="header__nav-link" href="#">О нас</a>
           </li>
-          <li class="header__nav-item">
-            <a class="header__nav-link" href="{% url 'units:units_list' %}">Объекты</a>
+          <li class="header__nav-item dropdown">
+            <a class="header__nav-link" href="#" data-bs-toggle="dropdown" role="button">Объекты</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'units:units_sale' %}">Продажа</a>
+              <a class="dropdown-item" href="{% url 'units:units_rent' %}">Аренда</a>
+              <a class="dropdown-item" href="{% url 'units:units_list' %}">Все объекты</a>
+              <a class="dropdown-item" href="{% url 'units:unit_create' %}">Разместить объект</a>
+            </div>
           </li>
           <li class="header__nav-item">
             <a class="header__nav-link" href="#">Новости</a>
@@ -45,7 +51,7 @@
                   <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
                 </li>
                 <li class="header__nav-item d-sm-1200-none" media="(min-width:1400px)" >
-                  Пользователь:  {{ user.first_name }}
+                  {{ user.first_name }}
                 <li>
               </ul>
             {% else %}
@@ -63,4 +69,31 @@
     </div>
   </div>
   <hr>
+  <script>
+    // Для визуализации активных кнопок меню
+    let menuLinks = document.querySelectorAll('.auto_active_link');
+    for (let link of menuLinks) {
+      link.classList.remove('active');
+    }
+    for (let link of menuLinks) {
+      let currentLink = localStorage.getItem('active_link');
+      if (link.id === currentLink) {
+        link.classList.add('active');
+      }
+    }
+
+    document.addEventListener('click', (event) => saveNextLink(event));
+
+    function saveNextLink(event) {
+      let link = event.target.closest('.auto_active_link');
+      if (link) {
+        localStorage.setItem('active_link', link.id);
+      }
+    }
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </header>
