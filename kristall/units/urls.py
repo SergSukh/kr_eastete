@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (index, units_list, unit_detail,
                     unit_edit, unit_create, unit_publicate,
-                    units_rent, units_sale)
+                    units_rent, units_sale, msg_create)
 
 
 app_name = 'units'
@@ -20,5 +20,6 @@ urlpatterns = [
         name='unit_publicate'
     ),
     path('create/', unit_create, name='unit_create'),
+    path('m_create/', msg_create, name='msg_create'),
     path('unit/<int:unit_id>/edit/', unit_edit, name='unit_edit'),
 ]

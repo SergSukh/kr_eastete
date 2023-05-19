@@ -54,10 +54,11 @@
       </li>
       <li class="footer__item">
         <h2 class="head2 footer__form-head">Оставить заявку</h2>
-        <form class="footer__form" action="https://jsonplaceholder.typicode.com/posts" method="post">
-          <input class="footer__form-item footer__form-input" type="text" name="name" placeholder="Фамилия, имя и отчество*" required>
-          <input class="footer__form-item footer__form-input" type="email" name="email" placeholder="E-mail*" required>
-          <textarea class="footer__form-item footer__form-textarea" name="description" cols="28" rows="4" placeholder="Сообщение"></textarea>
+        <form class="footer__form" method="post" href="{% url 'units:msg_create' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input class="footer__form-item footer__form-input" type="text" name="m_form.name" placeholder="Фамилия, имя и отчество*" required>
+          <input class="footer__form-item footer__form-input" type="email" name="m.form.email" placeholder="E-mail*" required>
+          <textarea class="footer__form-item footer__form-textarea" name="m_form.message" cols="28" rows="4" placeholder="Сообщение"></textarea>
           <div class="footer__form-bottom">
             <button class="btn-style font-link footer__btn" type="submit">Отправить данные</button>
             <div>

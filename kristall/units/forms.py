@@ -3,7 +3,7 @@ from django import forms
 from django.forms.models import BaseInlineFormSet
 from django.forms import modelformset_factory
 
-from .models import Unit, Image
+from .models import Unit, Image, Message
 
 
 class ElementInLineFormSet(BaseInlineFormSet):
@@ -85,6 +85,12 @@ class UnitCreateForm(forms.ModelForm):
             "Введите площадь",
             "Введите описание объекта"
         ]
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['message', 'name', 'email']
 
 
 ImagesFormSet = modelformset_factory(

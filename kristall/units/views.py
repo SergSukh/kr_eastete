@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from sorl.thumbnail import get_thumbnail
 
 from .models import Unit, Citys, Streets, Buildings, Image, Published
-from .forms import UnitCreateForm, ImagesFormSet, UnitForm
+from .forms import UnitCreateForm, ImagesFormSet, UnitForm, MessageForm
 
 
 def pages(request, unit_list):
@@ -154,3 +154,11 @@ def unit_edit(request, unit_id):
         unit = form.save()
         save_images(unit, images)
     return redirect('units:units_list')
+
+
+def msg_create(request):
+    form = MessageForm(request.Post or None)
+    if form.is_valid():
+        form.save()
+        return redirect('units:units_list')
+    return render(request, 'units/index.html', {'m_form': form})

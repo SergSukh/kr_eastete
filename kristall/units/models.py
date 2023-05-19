@@ -122,3 +122,13 @@ class Published(models.Model):
         if self.pub_date:
             return str('True')
         return False
+
+
+class Message(models.Model):
+    message = models.TextField('Сообщение')
+    name = models.CharField('ФИО', max_length=100)
+    email = models.EmailField('E-mail', max_length=254)
+    date = models.DateField('Дата', auto_created=True, auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date']
