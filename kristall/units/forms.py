@@ -2,7 +2,7 @@ from django import forms
 from django.forms import modelformset_factory
 from django.forms.models import BaseInlineFormSet
 
-from .models import Message, Image, Unit
+from .models import Image, Message, Unit
 
 
 class ElementInLineFormSet(BaseInlineFormSet):
