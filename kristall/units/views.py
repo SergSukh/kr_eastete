@@ -6,16 +6,15 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from sorl.thumbnail import get_thumbnail
 
-from .forms import UnitCreateForm, ImagesFormSet, UnitForm, MessageForm
-from .models import Unit, Citys, Streets, Buildings, Image, Published
+from .forms import ImagesFormSet, MessageForm, UnitCreateForm, UnitForm
+from .models import Buildings, Citys, Image, Published, Streets, Unit
 
 
 def pages(request, unit_list):
     units_in_page = settings.UNITS_IN_PAGE
     paginator = Paginator(unit_list, units_in_page)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return page_obj
+    return paginator.get_page(page_number)
 
 
 def index(request):
