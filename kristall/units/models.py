@@ -1,6 +1,7 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.contrib.auth import get_user_model
+from django.template.defaultfilters import slugify
+
 
 User = get_user_model()
 SALE = 'Продажа'
@@ -63,7 +64,7 @@ class Unit(models.Model):
     )
 
     def __str__(self) -> str:
-        description = '{}/{}'.format(self.name, self.square)
+        description = f'{self.name}/{self.square}'
         return description
 
     def adress(self) -> str:

@@ -1,5 +1,4 @@
 from django.urls import path
-
 import view
 
 app_name = 'units'

@@ -70,7 +70,7 @@ class UnitCreateForm(forms.ModelForm):
             'floor',
             'flat',
             'price'
-        
+        ]
         label = [
             'Название объекта',
             'Площадь, (m2)',

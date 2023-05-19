@@ -3,7 +3,7 @@ from datetime import datetime as dt
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render, redirect,
+from django.shortcuts import get_object_or_404, render, redirect
 
 from sorl.thumbnail import get_thumbnail
 
