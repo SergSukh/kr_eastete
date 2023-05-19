@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from .validators import UsernameValidator, PhoneValidator
+from .validators import PhoneValidator, UsernameValidator
 
 USER = 'user'
 MODERATOR = 'moderator'
@@ -29,7 +29,7 @@ class User(AbstractUser):
         blank=True,
         null=True,
         validators=[PhoneValidator()],
-        )
+    )
     role = models.CharField(
         'Роль пользователя',
         choices=roles,

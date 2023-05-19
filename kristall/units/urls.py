@@ -1,8 +1,16 @@
 from django.urls import path
 
-from .views import (index, units_list, unit_detail,
-                    unit_edit, unit_create, unit_publicate,
-                    units_rent, units_sale, msg_create)
+from .views import (
+    index,
+    units_list,
+    unit_detail,
+    unit_edit,
+    unit_create,
+    unit_publicate,
+    units_rent,
+    units_sale,
+    msg_create
+)
 
 
 app_name = 'units'

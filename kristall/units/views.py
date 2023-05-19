@@ -1,13 +1,14 @@
 from datetime import datetime as dt
-from django.shortcuts import render, redirect, get_object_or_404
 
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render, redirect,
+
 from sorl.thumbnail import get_thumbnail
 
-from .models import Unit, Citys, Streets, Buildings, Image, Published
 from .forms import UnitCreateForm, ImagesFormSet, UnitForm, MessageForm
+from .models import Unit, Citys, Streets, Buildings, Image, Published
 
 
 def pages(request, unit_list):
