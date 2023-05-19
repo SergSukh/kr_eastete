@@ -7,7 +7,6 @@ from .views import (index, units_list, unit_detail,
 
 app_name = 'units'
 
-
 urlpatterns = [
     path('', index, name='index'),
     path('units_list/', units_list, name='units_list'),

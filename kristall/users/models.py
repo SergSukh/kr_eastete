@@ -3,7 +3,6 @@ from django.db import models
 
 from .validators import UsernameValidator, PhoneValidator
 
-
 USER = 'user'
 MODERATOR = 'moderator'
 ADMIN = 'admin'

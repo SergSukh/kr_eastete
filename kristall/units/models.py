@@ -82,8 +82,8 @@ class Unit(models.Model):
     def get_images(self):
         return self.images.all()
 
-    def get_image_filename(instance, filename):
-        title = instance.unit.title
+    def get_image_filename(self, filename):
+        title = self.unit.title
         slug = slugify(title)
         return 'unit_images/%s-%s' % (slug, filename)
 
