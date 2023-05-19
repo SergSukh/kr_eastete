@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .forms import ElementInLineFormSet
-from .models import Unit, Image, Citys, Streets, Buildings
+from .models import Buildings, Citys, Image, Streets, Unit
 
 
 class UnitImagesInLine(admin.TabularInline):

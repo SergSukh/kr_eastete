@@ -1,7 +1,6 @@
 from django import forms
-
-from django.forms.models import BaseInlineFormSet
 from django.forms import modelformset_factory
+from django.forms.models import BaseInlineFormSet
 
 from .models import Unit, Image, Message
 
@@ -41,7 +40,7 @@ class UnitForm(forms.ModelForm):
             'floor',
             'flat',
             'price'
-            ]
+        ]
 
 
 class UnitCreateForm(forms.ModelForm):
@@ -71,7 +70,7 @@ class UnitCreateForm(forms.ModelForm):
             'floor',
             'flat',
             'price'
-            ]
+        
         label = [
             'Название объекта',
             'Площадь, (m2)',
@@ -94,9 +93,9 @@ class MessageForm(forms.ModelForm):
 
 
 ImagesFormSet = modelformset_factory(
-        Image,
-        form=ImageForm,
-        max_num=20,
-        can_delete=True,
-        extra=1
-    )
+    Image,
+    form=ImageForm,
+    max_num=20,
+    can_delete=True,
+    extra=1
+)
