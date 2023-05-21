@@ -1,20 +1,21 @@
-import views
 from django.urls import path
+
+from .views import index, unit_create, unit_detail, unit_edit, unit_publicate, units_list, units_rent, units_sale, msg_create
 
 app_name = 'units'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('units_list/', views.units_list, name='units_list'),
-    path('units_rent/', views.units_rent, name='units_rent'),
-    path('units_sale/', views.units_sale, name='units_sale'),
-    path('unit_detail/<int:unit_id>/', views.unit_detail, name='unit_detail'),
+    path('', index, name='index'),
+    path('units_list/', units_list, name='units_list'),
+    path('units_rent/', units_rent, name='units_rent'),
+    path('units_sale/', units_sale, name='units_sale'),
+    path('unit_detail/<int:unit_id>/', unit_detail, name='unit_detail'),
     path(
         'unit_publicate/<int:unit_id>/',
-        views.unit_publicate,
+        unit_publicate,
         name='unit_publicate'
     ),
-    path('create/', views.unit_create, name='unit_create'),
-    path('m_create/', views.msg_create, name='msg_create'),
-    path('unit/<int:unit_id>/edit/', views.unit_edit, name='unit_edit'),
+    path('create/', unit_create, name='unit_create'),
+    path('m_create/', msg_create, name='msg_create'),
+    path('unit/<int:unit_id>/edit/', unit_edit, name='unit_edit'),
 ]
