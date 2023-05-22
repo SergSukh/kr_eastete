@@ -85,7 +85,10 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
-
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1',
+    'http://158.160.55.161',
+]
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
 # Password validation
