@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 # User Models(Abstract user)
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.user'
 
 
 # Internationalization
