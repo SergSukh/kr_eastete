@@ -10,7 +10,7 @@ services:
       - ./.env
 
   web:
-    build: ./kristall
+    image: sergsukh/kristall:latest
     restart: always
     volumes:
       - static_value:/app/static/
