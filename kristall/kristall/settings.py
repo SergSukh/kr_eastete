@@ -36,9 +36,6 @@ INSTALLED_APPS = [
     'core',
     # frameworks
     'sorl.thumbnail',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'djoser',
 ]
 
 MIDDLEWARE = [
