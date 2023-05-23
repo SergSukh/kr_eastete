@@ -21,8 +21,8 @@ def index(request):
     return render(request, 'units/index.html')
 
 
-def units_list_show(request, units_list, title):
-    for unit in units_list:
+def units_list_show(request, objs_list, title):
+    for unit in objs_list:
         print(unit)
         if unit.main_image():
             unit.img = get_thumbnail(
@@ -41,20 +41,20 @@ def units_list_show(request, units_list, title):
 
 def units_list(request):
     if request.user.is_staff:
-        units_list = Unit.objects.all()
+        objs = Unit.objects.all()
     else:
-        units_list = Unit.objects.filter(published__answer=True)
-    return units_list_show(request, units_list, 'Объекты')
+        objs = Unit.objects.filter(published__answer=True)
+    return units_list_show(request, objs, 'Объекты')
 
 
 def units_rent(request):
-    units_list = Unit.objects.filter(deal='Аренда')
-    return units_list_show(request, units_list, 'Аренда объектов')
+    objs = Unit.objects.filter(deal='Аренда')
+    return units_list_show(request, objs, 'Аренда объектов')
 
 
 def units_sale(request):
-    units_list = Unit.objects.filter(deal='Продажа')
-    return units_list_show(request, units_list, 'Продажа объектов')
+    objs = Unit.objects.filter(deal='Продажа')
+    return units_list_show(request, objs, 'Продажа объектов')
 
 
 def unit_detail(request, unit_id):
