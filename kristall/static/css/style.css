@@ -127,6 +127,7 @@ input, textarea {
   font-style: normal;
   line-height: 21.94px;
   letter-spacing: 0.05px;
+  white-space: nowrap;
   color: #333;
 }
 
@@ -849,7 +850,6 @@ input, textarea {
   .section-questions__question-head {
     max-width: 760px;
   }
-
   
   .create-form {
     display: flex;
@@ -876,7 +876,6 @@ input, textarea {
   .footer__item:nth-child(2) {
     margin-bottom: 50px;
   }
-
     
   .create-form {
     display: flex;
@@ -1191,6 +1190,13 @@ input, textarea {
 
   .footer__item:nth-child(2) {
     max-width: 541px;
+  }
+
+  .deal-filter,
+  .unit_create {
+    margin-left: 10px;
+    font-size: large;
+    color:rgb(49, 49, 51);
   }
 }
 

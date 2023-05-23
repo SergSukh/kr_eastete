@@ -2,12 +2,35 @@
 <header class="header"> 
   <div class="container header__container">
     <div class="menu">
-      <button class="header__btn">
-        <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button class="header__btn dropdown">
+        <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"  data-bs-toggle="dropdown" role="button">
           <rect width="30" height="3" fill="#333333"/>
           <rect y="10" width="30" height="3" fill="#333333"/>
           <rect y="20" width="30" height="3" fill="#333333"/>
         </svg>
+        <ul class="dropdown-menu">
+          <li class="dropdown-item"><a href="#">О нас</a></li>
+          <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Объекты:</a></li>
+          <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_sale' %}">Продажа</a></li>
+          <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_rent' %}">Аренда</a></li>
+          <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_list' %}">Все объекты</a></li>
+          <li class="dropdown-item"><a class="unit_create" href="{% url 'units:unit_create' %}">Разместить объект</a></li>
+          <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Контакты:</a></li>
+          <li class="dropdown-item">
+            {% if user.is_authenticated %}
+              <ul class="header__nav-list">
+                <li class="header__nav-item"> 
+                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
+                </li>
+                <li class="header__nav-item d-sm-1200-none">
+                  {{ user.username }}
+                <li>
+              </ul>
+            {% else %}
+              <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
+            {% endif %}
+          </li>
+        </ul>
       </button>
     </div>
 
