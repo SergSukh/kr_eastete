@@ -100,6 +100,31 @@ input, textarea {
   align-items: center;
 }
 
+.menu-floors {
+  display: block;
+}
+
+.menu-first {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-second {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-second-item {
+  margin: auto;
+}
+
+.header__link-img {
+  max-width: 40px;
+}
 .header__right {
   display:flex;
   justify-content: flex-end;
@@ -1158,6 +1183,9 @@ input, textarea {
     display: none;
   }
 
+  .menu-second {
+    flex-direction: column;
+  }
   .section-how__item-result {
     flex: 0 0 calc(50% - 25px);
   }

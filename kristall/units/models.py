@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
 
+from users.validators import PhoneValidator
+
 User = get_user_model()
 
 SALE = 'Продажа'
@@ -127,7 +129,8 @@ class Published(models.Model):
 class Message(models.Model):
     message = models.TextField('Сообщение')
     name = models.CharField('ФИО', max_length=100)
-    email = models.EmailField('E-mail', max_length=254)
+    email = models.EmailField('E-mail', max_length=254, blank=True, null=True)
+    phone = models.PositiveBigIntegerField('Phone', validators=[PhoneValidator()])
     date = models.DateField('Дата', auto_created=True, auto_now_add=True)
 
     class Meta:

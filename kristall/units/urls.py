@@ -17,6 +17,6 @@ urlpatterns = [
         name='unit_publicate'
     ),
     path('create/', unit_create, name='unit_create'),
-    path('m_create/', msg_create, name='msg_create'),
+    path('msg_create/', msg_create, name='msg_create'),
     path('unit/<int:unit_id>/edit/', unit_edit, name='unit_edit'),
 ]

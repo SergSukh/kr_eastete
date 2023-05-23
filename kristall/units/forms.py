@@ -89,7 +89,13 @@ class UnitCreateForm(forms.ModelForm):
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        fields = ['message', 'name', 'email']
+        fields = ['message', 'name', 'email', 'phone']
+        help_text = [
+            'Текст сообщения',
+            'ФИО',
+            'E-mail',
+            'телефон'
+        ]
 
 
 ImagesFormSet = modelformset_factory(

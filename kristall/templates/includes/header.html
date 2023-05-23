@@ -1,95 +1,101 @@
 {% load static %}
 <header class="header"> 
   <div class="container header__container">
-    <div class="menu">
-      <button class="header__btn dropdown">
-        <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"  data-bs-toggle="dropdown" role="button">
-          <rect width="30" height="3" fill="#333333"/>
-          <rect y="10" width="30" height="3" fill="#333333"/>
-          <rect y="20" width="30" height="3" fill="#333333"/>
-        </svg>
-        <ul class="dropdown-menu">
-          <li class="dropdown-item"><a href="#">О нас</a></li>
-          <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Объекты:</a></li>
-          <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_sale' %}">Продажа</a></li>
-          <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_rent' %}">Аренда</a></li>
-          <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_list' %}">Все объекты</a></li>
-          <li class="dropdown-item"><a class="unit_create" href="{% url 'units:unit_create' %}">Разместить объект</a></li>
-          <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Контакты:</a></li>
-          <li class="dropdown-item">
-            {% if user.is_authenticated %}
-              <ul class="header__nav-list">
-                <li class="header__nav-item"> 
-                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
-                </li>
-                <li class="header__nav-item d-sm-1200-none">
-                  {{ user.username }}
-                <li>
-              </ul>
-            {% else %}
-              <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
-            {% endif %}
-          </li>
-        </ul>
-      </button>
-    </div>
-
-    <div class="header__center">
-      <a class="header__logo-link" href="{% url 'units:index' %}">
-        <picture>
-          <source class="header__logo-img-small" srcset="{% static 'img/logo_1024.png' %}" media="(min-width:321px) and (max-width:1080px)">
-          <source class="header__logo-img-small" media="(max-width: 320px)" srcset="{% static 'img/logo_320.png' %}">
-          <img class="header__logo-img" src="{% static 'img/Logo.jpg' %}" alt="Кристалл Агенство Недвижимости">
-        </picture>
-      </a>
-    </div>
-    <div class="header__right">
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-item">
-            <a class="header__nav-link" href="#">О нас</a>
-          </li>
-          <li class="header__nav-item dropdown">
-            <a class="header__nav-link" href="#" data-bs-toggle="dropdown" role="button">Объекты</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'units:units_sale' %}">Продажа</a>
-              <a class="dropdown-item" href="{% url 'units:units_rent' %}">Аренда</a>
-              <a class="dropdown-item" href="{% url 'units:units_list' %}">Все объекты</a>
-              <a class="dropdown-item" href="{% url 'units:unit_create' %}">Разместить объект</a>
-            </div>
-          </li>
-          <li class="header__nav-item">
-            <a class="header__nav-link" href="#">Новости</a>
-          </li>
-          <li class="header__nav-item">
-            <a class="header__nav-link" href="#">Отзывы</a>
-          </li>
-          <li class="header__nav-item">
-            <a class="header__nav-link" href="#">Контакты</a>
-          </li>
-          <li class="header__nav-item"> 
-            {% if user.is_authenticated %}
-              <ul class="header__nav-list">
-                <li class="header__nav-item"> 
-                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
-                </li>
-                <li class="header__nav-item d-sm-1200-none" media="(min-width:1400px)" >
-                  {{ user.username }}
-                <li>
-              </ul>
-            {% else %}
-              <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
-            {% endif %}
-          </li>
-        </ul>
-      </nav>
-      <button class="header__btn header__search-link">
-        <svg class="header__icon header__icon-search" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="7.56126" height="1.89031" transform="matrix(0.713342 0.700816 -0.713342 0.700816 18.6062 17.3762)" fill="#333333"/>
-          <path d="M20.9303 10.7726C20.9303 16.1533 16.4855 20.5452 10.9652 20.5452C5.44478 20.5452 1 16.1533 1 10.7726C1 5.39198 5.44478 1 10.9652 1C16.4855 1 20.9303 5.39198 20.9303 10.7726Z" stroke="#333333" stroke-width="2"/>
-        </svg>
-      </button>
-    </div>
+    <ul class="menu-floors">
+      <li class="menu-first">
+        <div class="menu">
+          <button class="header__btn dropdown">
+            <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"  data-bs-toggle="dropdown" role="button">
+              <rect width="30" height="3" fill="#333333"/>
+              <rect y="10" width="30" height="3" fill="#333333"/>
+              <rect y="20" width="30" height="3" fill="#333333"/>
+            </svg>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Объекты:</a></li>
+              <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_sale' %}">Продажа</a></li>
+              <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_rent' %}">Аренда</a></li>
+              <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_list' %}">Все объекты</a></li>
+              <li class="dropdown-item"><a class="unit_create" href="{% url 'units:unit_create' %}">Разместить объект</a></li>
+              <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Контакты:</a></li>
+              <li class="dropdown-item">
+                {% if user.is_authenticated %}
+                  <ul class="header__nav-list">
+                    <li class="header__nav-item"> 
+                      <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
+                    </li>
+                    <li class="header__nav-item d-sm-1200-none">
+                      {{ user.username }}
+                    <li>
+                  </ul>
+                {% else %}
+                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
+                {% endif %}
+              </li>
+            </ul>
+          </button>
+        </div>
+        <div class="header__center">
+          <a class="header__logo-link" href="{% url 'units:index' %}">
+            <picture>
+              <source class="header__logo-img-small" srcset="{% static 'img/logo_1024.png' %}" media="(min-width:321px) and (max-width:1080px)">
+              <source class="header__logo-img-small" media="(max-width: 320px)" srcset="{% static 'img/logo_320.png' %}">
+              <img class="header__logo-img" src="{% static 'img/Logo.jpg' %}" alt="Кристалл Агенство Недвижимости">
+            </picture>
+          </a>
+        </div>
+        <div class="header__right">
+          <nav class="header__nav">
+            <ul class="header__nav-list">
+              <li class="header__nav-item dropdown">
+                <a class="header__nav-link" href="#" data-bs-toggle="dropdown" role="button">Объекты</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'units:units_sale' %}">Продажа</a>
+                  <a class="dropdown-item" href="{% url 'units:units_rent' %}">Аренда</a>
+                  <a class="dropdown-item" href="{% url 'units:units_list' %}">Все объекты</a>
+                  <a class="dropdown-item" href="{% url 'units:unit_create' %}">Разместить объект</a>
+                </div>
+              </li>
+              <li class="header__nav-item">
+                <a class="header__nav-link" href="#">Новости</a>
+              </li>
+              <li class="header__nav-item">
+                <a class="header__nav-link" href="#">Отзывы</a>
+              </li>
+              <li class="header__nav-item">
+                <a class="header__nav-link" href="#">Контакты</a>
+              </li>
+              <li class="header__nav-item"> 
+                {% if user.is_authenticated %}
+                  <ul class="header__nav-list">
+                    <li class="header__nav-item"> 
+                      <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
+                    </li>
+                    <li class="header__nav-item d-sm-1200-none" media="(min-width:1400px)" >
+                      {{ user.username }}
+                    <li>
+                  </ul>
+                {% else %}
+                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
+                {% endif %}
+              </li>
+            </ul>
+          </nav>
+          <button class="header__btn header__search-link">
+            <svg class="header__icon header__icon-search" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="7.56126" height="1.89031" transform="matrix(0.713342 0.700816 -0.713342 0.700816 18.6062 17.3762)" fill="#333333"/>
+              <path d="M20.9303 10.7726C20.9303 16.1533 16.4855 20.5452 10.9652 20.5452C5.44478 20.5452 1 16.1533 1 10.7726C1 5.39198 5.44478 1 10.9652 1C16.4855 1 20.9303 5.39198 20.9303 10.7726Z" stroke="#333333" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+      </li>
+      <li class="menu-second">
+        <a class="menu-second-item" href="tel:+79608266727">Звонок на номер: +7 960 826-67-27</a>
+        <a class="menu-second-item" href="https://t.me/+79608266727">
+          <img class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
+          Написать в Телеграмм
+        </a>
+      </li>
+    </ul>
   </div>
   <hr>
   <script>
