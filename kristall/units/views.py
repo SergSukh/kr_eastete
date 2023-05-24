@@ -35,7 +35,7 @@ def units_list_show(request, objs_list, title):
     return render(
         request,
         'units/units_list.html',
-        {'page_obj': pages(request, units_list), 'title': title}
+        {'page_obj': pages(request, objs_list), 'title': title}
     )
 
 
