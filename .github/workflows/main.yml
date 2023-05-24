@@ -65,8 +65,8 @@ jobs:
           sudo docker-compose stop
           sudo docker-compose rm -f web
           sudo docker image rm ${{ secrets.DOCKER_USERNAME }}/kristall
-          sudo docker image prune ${{ secrets.DOCKER_USERNAME }}/kristall
-          sudo docker volume prune -a
+          sudo docker image prune ${{ secrets.DOCKER_USERNAME }}/kristall -y
+          sudo docker volume prune -a -y
           rm .env
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
