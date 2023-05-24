@@ -1,8 +1,8 @@
 {% load static %}
 <header class="header"> 
   <div class="container header__container">
-    <ul class="menu-floors">
-      <li class="menu-first">
+    <ul class="menu-floors container">
+      <li class="menu-first header__container">
         <div class="menu">
           <button class="header__btn dropdown">
             <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"  data-bs-toggle="dropdown" role="button">
@@ -89,10 +89,15 @@
         </div>
       </li>
       <li class="menu-second">
-        <a class="menu-second-item" href="tel:+79608266727">Звонок на номер: +7 960 826-67-27</a>
+        <a class="menu-second-item" type="button" href="tel:+79608266727">
+          <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
+          Позвонить
+          <p class="menu-second-item-comment"> +7 960 826-67-27</p>
+        </a>
         <a class="menu-second-item" href="https://t.me/+79608266727">
           <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
-          Написать в Телеграмм
+          Написать
+          <p class="menu-second-item-comment"> в Телеграмм</p>
         </a>
       </li>
     </ul>

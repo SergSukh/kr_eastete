@@ -43,8 +43,8 @@ class Unit(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='survey',
-        verbose_name='Автор интервью'
+        related_name='units',
+        verbose_name='Автор'
     )
     name = models.CharField('Название объекта', max_length=50)
     square = models.FloatField('Площадь, m2')
