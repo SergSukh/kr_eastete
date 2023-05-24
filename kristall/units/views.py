@@ -3,7 +3,7 @@ from datetime import datetime as dt
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, get_list_or_404, redirect, render
 from sorl.thumbnail import get_thumbnail
 
 from .forms import ImagesFormSet, MessageForm, UnitCreateForm, UnitForm
@@ -23,7 +23,6 @@ def index(request):
 
 def units_list_show(request, objs_list, title):
     for unit in objs_list:
-        print(unit)
         if unit.main_image():
             unit.img = get_thumbnail(
                 unit.main_image(),
@@ -41,19 +40,19 @@ def units_list_show(request, objs_list, title):
 
 def units_list(request):
     if request.user.is_staff:
-        objs = Unit.objects.all()
+        objs = get_list_or_404(Unit)
     else:
-        objs = Unit.objects.filter(published__answer=True)
+        objs = get_list_or_404(Unit, published__answer=True)
     return units_list_show(request, objs, 'Объекты')
 
 
 def units_rent(request):
-    objs = Unit.objects.filter(deal='Аренда')
+    objs = get_list_or_404(Unit, deal='Аренда')
     return units_list_show(request, objs, 'Аренда объектов')
 
 
 def units_sale(request):
-    objs = Unit.objects.filter(deal='Продажа')
+    objs = get_list_or_404(Unit, deal='Продажа')
     return units_list_show(request, objs, 'Продажа объектов')
 
 
@@ -83,7 +82,7 @@ def save_images(unit, images):
 
 
 @login_required
-def unit_publicate(request, unit_id):
+def unit_publicate(unit_id):
     unit = get_object_or_404(Unit, id=unit_id)
     if unit.is_published():
         Published.objects.filter(unit=unit).delete()

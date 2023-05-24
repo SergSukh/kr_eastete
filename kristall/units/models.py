@@ -25,7 +25,7 @@ class Streets(models.Model):
     street = models.CharField('Улица', max_length=50)
 
     def __str__(self) -> str:
-        return self.street
+        return str(self.street)
 
 
 class Buildings(models.Model):
