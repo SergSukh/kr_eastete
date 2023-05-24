@@ -48,7 +48,10 @@ def units_list(request):
 
 
 def units_rent(request):
-    objs = get_list_or_404(Unit, deal='Аренда')
+    if request.user.is_staff:
+        objs = get_list_or_404(Unit, deal='Аренда')
+    else:
+        objs = get_list_or_404(Unit, deal='Аренда', published__answer=True)
     return units_list_show(request, objs, 'Аренда объектов')
 
 
