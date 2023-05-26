@@ -65,7 +65,7 @@ class Unit(models.Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.name}/{self.square}'
+        return f'{self.name}. {self.square} м2'.upper()
 
     def adress(self) -> str:
         return f'г. {self.city}, ул. {self.street}, стр. {self.build.building}'

@@ -7,29 +7,147 @@
 
   {% block content %}
     <div class="container section-hero__container">
-        <h1 class="header-content">{{ unit }}:</h1>
-        {% if request.user.is_staff %}
-        <a href="{% url 'units:unit_publicate' unit.id %}">
-          {% if unit.is_published %}
-            Опубликовано: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации..
-          {% else %}
-            Опубликовать..
-          {% endif %}
-        </a>
+      <h1 class="header-content">{{ unit }}:</h1>
+      <p class="header-adress">{{ unit.adress }}</p>
+      <hr>
+      {% if request.user.is_staff %}
+      <a href="{% url 'units:unit_publicate' unit.id %}">
+        {% if unit.is_published %}
+          Опубликовано: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации..
+        {% else %}
+          Опубликовать..
         {% endif %}
-        <div class="unit-adress">Адрес: {{ unit.adress }}</div>
-        <div class="unit-square">Площадь: {{ unit.square }}</div>
-        <div class="unit-description">Опиcание: {{ unit.description }}</div>
-        <div class="unit-price">Цена: {{ unit.price }} тыс. руб</div>
-        <ul class="unit-images">
-        {% for image in unit.imgs %}
-          <li class="unit-image">
-            <div class="main-content-unit-img"  style="background-image: url({{image.url}})">AН Кристалл</div>
-          </li>
-        {% endfor %}
-        </ul>
+      </a><hr>
+      {% endif %}
+      <div class="container unit-details">
+        <article class="carusel-container">
+          <div id="carousel" class="carousel">
+            <button class="arrow prev">⇦</button>
+            <div class="gallery">
+              <ul class="images">
+                {% for image in unit.imgs %}
+                  <li class="unit-image">
+                    <div class="main-content-unit-img"  style="background-image: url({{image.url}})">AН Кристалл</div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <button class="arrow next">⇨</button>
+          </div>
+        </article>
+        <article class="description-container">
+          <div class="unit-adress">Адрес: {{ unit.adress }}</div>
+          <div class="unit-square">Площадь: {{ unit.square }}</div>
+          <div class="unit-description">Опиcание: {{ unit.description }}</div>
+          <div class="unit-price">Цена: {{ unit.price }} тыс. руб</div>
+        </article>
         {% if request.user.is_staff %}
             <a class="btn-style section-hero__btn" href="{% url 'units:unit_edit' unit.id %}"> Редактировать объект</a>
         {% endif %}
+      </div>
   </div>
+<!-- Стили для перелистывания фото -->
+<style>
+  .carousel {
+    position: relative;
+    width: 500px;
+    height:500px;
+    border: 1px solid #CCC;
+    border-radius: 15px;
+    background: #eee;
+  }
+  
+  .carousel img {
+    width: 500px;
+    height: 500px;
+    /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
+    display: block;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    padding: 0;
+    background: #ddd;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 35px;
+    line-height: 35px;
+    color: #444;
+    display: block;
+  }
+  
+  .arrow:focus {
+    outline: none;
+  }
+  
+  .arrow:hover {
+    background: #ccc;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 7px;
+    z-index: +2;
+  }
+  
+  .next {
+    right: 7px;
+  }
+  
+  .gallery {
+    width: 500px;
+    overflow: hidden;
+  }
+  
+  .gallery ul {
+    height: 500px;
+    width: 9999px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: margin-left 250ms;
+    /* удаляем пустое пространство между элементами li, у которых установлен inline-block */
+    /* http://davidwalsh.name/remove-whitespace-inline-block */
+    font-size: 0;
+  }
+  
+  .gallery li {
+    display: inline-block;
+  }
+</style>
+<!-- Скрипт перелистывания фото в шаблоне -->
+<script>
+  let i = 1;
+  for(let li of carousel.querySelectorAll('li')) {
+    li.style.position = 'relative';
+    li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
+    i++;
+  }
+
+  /* конфигурация */
+  let width = 500; // ширина картинки
+  let count = 1; // видимое количество изображений
+
+  let list = carousel.querySelector('ul');
+  let listElems = carousel.querySelectorAll('li');
+
+  let position = 0; // положение ленты прокрутки
+
+  carousel.querySelector('.prev').onclick = function() {
+    // сдвиг влево
+    position += width * count;
+    // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
+    position = Math.min(position, 0)
+    list.style.marginLeft = position + 'px';
+  };
+
+  carousel.querySelector('.next').onclick = function() {
+    // сдвиг вправо
+    position -= width * count;
+    // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
+    position = Math.max(position, -width * (listElems.length - count));
+    list.style.marginLeft = position + 'px';
+  };
+</script>
 {%endblock%}
