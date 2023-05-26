@@ -78,6 +78,17 @@
                   <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
                 {% endif %}
               </li>
+              <li class="header__nav-item">
+                <a class="menu-second-item" type="button" href="tel:+79608266727">
+                  <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
+                  <p class="menu-second-item-comment"> +7 960 826-67-27</p>
+                </a>
+              </li>
+              <li class="header__nav-item">
+                <a class="menu-second-item" href="https://t.me/+79608266727">
+                  <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
+                </a>
+              </li>
             </ul>
           </nav>
           <button class="header__btn header__search-link">
@@ -88,18 +99,7 @@
           </button>
         </div>
       </li>
-      <li class="menu-second">
-        <a class="menu-second-item" type="button" href="tel:+79608266727">
-          <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
-          Позвонить
-          <p class="menu-second-item-comment"> +7 960 826-67-27</p>
-        </a>
-        <a class="menu-second-item" href="https://t.me/+79608266727">
-          <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
-          Написать
-          <p class="menu-second-item-comment"> в Телеграмм</p>
-        </a>
-      </li>
+      
     </ul>
   </div>
   <hr>

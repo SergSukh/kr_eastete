@@ -31,7 +31,7 @@ class Streets(models.Model):
 class Buildings(models.Model):
     building = models.IntegerField('Здание')
     block = models.CharField('Корпус', max_length=5, blank=True, null=True)
-    floors = models.IntegerField('Этажей в здании', blank=True, null=True)
+    floors = models.IntegerField('Этажность здания', blank=True, null=True)
 
     def __str__(self) -> str:
         if self.block:
