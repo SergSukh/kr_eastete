@@ -86,7 +86,7 @@ def save_images(unit, images):
 
 
 @login_required
-def unit_publicate(unit_id):
+def unit_publicate(request, unit_id):
     unit = get_object_or_404(Unit, id=unit_id)
     if unit.is_published():
         pub = get_object_or_404(Published, unit=unit)

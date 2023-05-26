@@ -14,7 +14,7 @@
       <div class="menu-second">
         <a class="menu-second-item" href="{% url 'units:unit_publicate' unit.id %}">
         {% if unit.is_published %}
-          Опубликовано: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации..
+          от: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации..
         {% else %}
           Опубликовать..
         {% endif %}
