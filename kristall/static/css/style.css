@@ -865,7 +865,6 @@ input, textarea {
   max-width: 850px;
 }
 .main-content-unit-img {
-  display: block;
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
@@ -880,10 +879,10 @@ input, textarea {
   background: #eee;
 }
 
+.main-content-unit-img,
 .carusel img {
   width: 850px;
   height: 850px;
-  /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
   display: block;
 }
 
@@ -986,6 +985,9 @@ input, textarea {
 .square, 
 .description {
   margin-left: 15px;
+}
+.not_in_article {
+  display: none;
 }
 @media (min-width:769px) and (max-width: 1080px) {
   .container {
@@ -1232,6 +1234,72 @@ input, textarea {
   }
 }
 
+@media (min-width:1080px) and (max-width: 1600px) {
+  .in_article {
+    display: none;
+  }
+  .not_in_article {
+    display: block;
+  }
+}
+
+@media (min-width:1080px) and (max-width: 1350px) {
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery,
+  .main-content-unit-img,
+  .unit-image {
+    width: 600px;
+    height: 500px;
+  }
+}
+
+@media (min-width:940px) and (max-width: 1080px) {
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery,
+  .main-content-unit-img,
+  .unit-image {
+    width: 800px;
+    height: 600px;
+  }
+}
+
+@media (min-width:850px) and (max-width: 940px) {
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery,
+  .main-content-unit-img,
+  .unit-image {
+    width: 720px;
+    height: 600px;
+  }
+}
+
+@media (min-width:700px) and (max-width: 850px) {
+  .description-container {
+    margin: auto;
+  }
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery {
+    margin: auto;
+  }
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery,
+  .main-content-unit-img,
+  .unit-image {
+    width: 600px;
+    height: 500px;
+  }
+}
+
 @media (min-width:451px) and (max-width:700px) {
   .section-aboutus__item-image {
     height: 60vw;
@@ -1259,10 +1327,12 @@ input, textarea {
   .carusel-container,
   .carusel,
   .gallery {
-    width: 500px;
-    height: 400px;
     margin: auto;
   }
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery,
   .main-content-unit-img,
   .unit-image {
     width: 500px;
@@ -1341,6 +1411,14 @@ input, textarea {
 }
 
 @media (min-width:451px) and (max-width:1080px) {
+  .description-container,
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery {
+    margin: auto;
+  }
+
   .section {
     margin-bottom: 83px;
   }
@@ -1365,6 +1443,9 @@ input, textarea {
 @media (max-width: 1080px) {
   .menu {
     display: block;
+  }
+  .unit-details {
+    flex-direction: column;
   }
 
   .menu-second {
@@ -1413,6 +1494,9 @@ input, textarea {
     margin-left: 10px;
     font-size: large;
     color:rgb(49, 49, 51);
+  }
+  .not_in_article {
+    display: none;
   }
 }
 
