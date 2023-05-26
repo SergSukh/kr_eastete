@@ -1248,6 +1248,26 @@ input, textarea {
   .menu-second-item-comment {
     display: none;
   }
+  .unit-details,
+  .unit-param {
+    flex-direction: column;
+  }
+  .description-container {
+    margin: auto;
+  }
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+  }
+  .main-content-unit-img,
+  .unit-image {
+    width: 500px;
+    height: 400px;
+  }
 }
 
 @media (min-width:451px) and (max-width:800px) {
@@ -1615,14 +1635,10 @@ input, textarea {
   .unit-param {
     flex-direction: column;
   }
+  .main-content-unit-img,
   .unit-image {
     width: 350px;
     height: 280px;
   }
-  .main-content-unit-img {
-    min-width: 350px;
-    min-height: 280px;
-  }
-
 }
 
