@@ -741,11 +741,15 @@ input, textarea {
 
 .unit-create-field *{
   min-inline-size: 100%;
-    margin: 0;
-    padding: 0;
-    outline: 1px solid rgb(49, 49, 51);
+  margin: 0;
+  padding: 0;
+  outline: 1px solid rgb(49, 49, 51);
   }
 
+.unit-details {
+  display: flex;
+  flex-direction: row;
+}
 /*footer*/
 .footer__nav-link:hover {
   color: var(--main-color);
@@ -841,15 +845,6 @@ input, textarea {
   color: #000;
 }
 
-.main-content-unit-img {
-  min-width: 500px;
-  min-height: 500px;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  border-radius: 15px;
-}
-
 .create-form {
   display: flex;
   flex-direction: row;
@@ -858,7 +853,7 @@ input, textarea {
 .left {
   margin: 15px;
 }
-
+/* unit-image carusel */
 .unit-images {
   display: flex;
   flex-wrap: wrap;
@@ -867,22 +862,132 @@ input, textarea {
 }
 
 .unit-image {
-  flex: calc(100% / 3 - 48px);
-  max-width: 500px;
+  max-width: 850px;
+}
+.main-content-unit-img {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border-radius: 15px;
+}
+.carusel {
+  position: relative;
+  width: 850px;
+  height:850px;
+  border: 1px solid #CCC;
+  border-radius: 15px;
+  background: #eee;
 }
 
+.carusel img {
+  width: 850px;
+  height: 850px;
+  /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
+  display: block;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  padding: 0;
+  background: #ddd;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-size: 35px;
+  line-height: 35px;
+  color: #444;
+  display: block;
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+.prev {
+  left: 7px;
+  z-index: +2;
+}
+
+.next {
+  right: 7px;
+}
+
+.gallery {
+  width: 850px;
+  overflow: hidden;
+}
+
+.gallery ul {
+  height: 850px;
+  max-width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: margin-left 150ms;
+  /* удаляем пустое пространство между элементами li, у которых установлен inline-block */
+  /* http://davidwalsh.name/remove-whitespace-inline-block */
+  font-size: 0;
+}
+
+.gallery li {
+  display: inline-block;
+}
+/* unit details description*/
+.description-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-left: 40px;
+
+}
+.unit-description-price{
+  outline: 1px solid var(--color-grey-hover);
+  text-align: center;
+  margin: 10px 0 0 10px;
+  padding: 0 10px 10px 0;
+}
+.unit-price {
+  min-width: 100%;
+  outline: 1px, solid blue;
+}
+.unit-price-name {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+.unit-price-num {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 42px;
+  font-weight: bold;
+}
+.unit-param {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 0 10px;
+  padding: 0 10px 10px 0;
+}
+.unit-param-name {
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: start;
+  justify-content: end;
+}
+.unit-param-value {
+  font-style: italic;
+  font-size: 20px;
+  margin: auto;
+}
+.square, 
+.description {
+  margin-left: 15px;
+}
 @media (min-width:769px) and (max-width: 1080px) {
-  .unit-image {
-    flex: calc(100% / 2 - 2px);
-    max-width: 500px;
-    max-height: 500px;
-    margin: 1px;
-  }
-  .main-content-unit-img {
-    max-width: 500px;
-    max-height: 500px;
-    min-height: 350px;
-  }
   .container {
     max-width: 954px;
   }
@@ -945,17 +1050,7 @@ input, textarea {
 }
 
 @media (min-width:451px) and (max-width:940px) {
-  .unit-image {
-    flex: calc(100% / 2 - 2px);
-    max-width: 390px;
-    max-height: 390px;
-    margin: 1px;
-  }
-  .main-content-unit-img {
-    max-width: 390px;
-    max-height: 390px;
-    min-height: 300px;
-  }
+
   .footer__item:nth-child(2) {
     margin-bottom: 50px;
   }
@@ -986,17 +1081,6 @@ input, textarea {
 
   .section-aboutus__item-paragraf {
     max-width: 366px;
-  }
-  .unit-image {
-    flex: calc(100% / 2 - 2px);
-    max-width: 390px;
-    max-height: 390px;
-    margin: 1px;
-  }
-  .main-content-unit-img {
-    max-width: 390px;
-    max-height: 390px;
-    min-height: 250px;
   }
 }
 
@@ -1145,17 +1229,6 @@ input, textarea {
 
   .section-aboutus__item-advantage:not(:nth-child(2)) {
     margin-bottom: 30px;
-  }
-  .unit-image {
-    flex: calc(100% / 2 - 2px);
-    max-width: 300px;
-    max-height: 300px;
-    margin: 1px;
-  }
-  .main-content-unit-img {
-    max-width: 300px;
-    max-height: 300px;
-    min-height: 250px;
   }
 }
 
@@ -1530,16 +1603,25 @@ input, textarea {
   .menu-second-item {
     margin: 5px;
   }
+  .unit-images,
+  .carusel-container,
+  .carusel,
+  .gallery {
+    width: 350px;
+    height: 280px;
+  }
+  
+  .unit-details,
+  .unit-param {
+    flex-direction: column;
+  }
   .unit-image {
-    flex: calc(100% / 1 - 8px);
-    max-width: 380px;
-    max-height: 380px;
-    margin: 5px;
+    width: 350px;
+    height: 280px;
   }
   .main-content-unit-img {
-    max-width: 380px;
-    max-height: 380px;
-    min-height: 380px;
+    min-width: 350px;
+    min-height: 280px;
   }
 
 }

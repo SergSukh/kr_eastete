@@ -89,11 +89,14 @@ def save_images(unit, images):
 def unit_publicate(unit_id):
     unit = get_object_or_404(Unit, id=unit_id)
     if unit.is_published():
-        Published.objects.filter(unit=unit).delete()
+        pub = get_object_or_404(Published, unit=unit)
+        pub.delete()
     else:
-        Published.objects.create(
-            unit=unit,
-            pub_date=dt.now())
+        pub = Published()
+        pub.unit=unit
+        pub.pub_date=dt.now()
+        pub.answer = True
+        pub.save()
     return redirect('units:unit_detail', unit_id)
 
 

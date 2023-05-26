@@ -65,10 +65,10 @@ class Unit(models.Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.name}. {self.square} м2'.upper()
+        return f'{self.name}. {self.square}'.upper()
 
     def adress(self) -> str:
-        return f'г. {self.city}, ул. {self.street}, стр. {self.build.building}'
+        return f'г. {self.city}, ул. {self.street}, {self.build}'
 
     def is_published(self) -> bool:
         if len(self.published.all()) > 0:
@@ -89,7 +89,11 @@ class Unit(models.Model):
         return 'unit_images/%s-%s' % (slug, filename)
 
     def price_per_metr(self) -> float:
-        return float(round((self.price / self.square), 2))
+        return '{:,}'.format(
+            int(self.price * 1000 / self.square)).replace(',', '`')
+
+    def unit_price(self):
+        return '{:,}'.format(int(self.price * 1000)).replace(',', '`')
 
 
 class Image(models.Model):
