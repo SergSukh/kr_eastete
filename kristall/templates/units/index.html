@@ -18,7 +18,22 @@
     <section class="section section-aboutus">
       <div class="container section-aboutus_conteiner">
         <h2 class="head2 section-aboutus__head2">О нас</h2>
-        <p class="paragraf section-aboutus__paragraf">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae dolor necessitatibus iusto qui accusamus quas eaque temporibus veniam distinctio dolorum quaerat enim, itaque dolores illo repudiandae porro, aut voluptatum quasi.</p>
+        <p class="paragraf section-aboutus__paragraf">Агентство недвижимости "Кристалл". Помогаем в решении Ваших проблем и задач, связанных с 
+          недвижимостью: продажа, аренда, доверительное управление, юридическая поддержка на всех 
+          этапах.
+          
+          Почему нам доверяют?
+          Мы оказываем качественные услуги в сфере недвижимости, ориентируясь на клиентов и учитывая 
+          тенденции на рынке недвижимости.
+          Опыт проведённых сделок позволяет нам максимально помочь Вам в любой сложной ситуации.
+          Мы тщательно отбираем базу объектов, проверяем документы на юридическую чистоту.
+          
+          Безупречная репутация, ответственность и кристальная честность - вот слагаемые нашего 
+          успеха!
+          
+          
+          
+          При всём богатстве выбора, другой альтернативы нет! (с)</p>
         <ul class="section-aboutus__list">
           <li class="section-aboutus__item">
             <div class="section-aboutus__item-image" style="background-image: url({% static './img/panorama.jpg' %});">
@@ -60,7 +75,7 @@
       </div>
     </section>
 
-    <section class="section section-how">
+    <section class="section section-how" style="display: none;">
       <div class="container">
         <h2 class="head2 section-how__head">Как мы работаем</h2>
         <ul class="section-how__list-step">
@@ -113,7 +128,7 @@
           </li>
           <li class="section-questions__item">
             <div class="accordion__header section-questions__question">
-              <h3 class="head3 section-questions__question-head">У меня есть объект недвижимости. Но, по нему есть несколько нюансов... Сможем ли мы их устранить<span class="section-questions__head3-spec">/</span> решить?</h3>
+              <h3 class="head3 section-questions__question-head">У меня есть объект недвижимости. Но, по нему есть несколько нюансов... Сможем ли мы их устранить <span class="section-questions__head3-spec"></span>/<wbr/> решить?</h3>
               <svg class="section-questions__question-icon" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="25" cy="25" rx="25" ry="25" fill="#ECECEC"/>
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z" fill="#666666"/>
@@ -125,7 +140,7 @@
           </li>
           <li class="section-questions__item">
             <div class="accordion__header section-questions__question">
-              <h3 class="head3 section-questions__question-head">Могу ли я делегировать вам работу по поиску и подбору требуемого помещения <span class="section-questions__head3-spec">/</span>/<wbr/>объекта?</h3>
+              <h3 class="head3 section-questions__question-head">Могу ли я делегировать вам работу по поиску и подбору требуемого помещения <span class="section-questions__head3-spec"></span>/<wbr/>объекта?</h3>
               <svg class="section-questions__question-icon" data-formset-add-form width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <ellipse cx="25" cy="25" rx="25" ry="25" fill="#ECECEC"/>
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M25.0571 24.0571L25.0571 9L25.9429 9L25.9429 24.0571L33.8835 24.0571L41 24.0571L41 24.9429L25.9429 24.9429L25.9429 40L25.0571 40L25.0571 24.9429L10 24.9429L10 24.0571L25.0571 24.0571Z" fill="#666666"/>
@@ -140,11 +155,13 @@
 <script>
   this.addEventListener('click', (e) => {
     const elHeader = e.target.closest('.accordion__header');
+    const elips = elHeader.querySelector('.section-questions__question-icon');
     if (!elHeader) {
       return
       console.log('Element not find');
     }
     elHeader.parentElement.classList.toggle('body_show');
+    elips.classList.toggle('deactivate')
   });
 </script>
 {% endblock %}

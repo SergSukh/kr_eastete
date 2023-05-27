@@ -1,3 +1,4 @@
+/* version 27_05_23*/
 :root {
   --time-magic: 0.5s;
   --main-color:#FF9900;
@@ -166,7 +167,7 @@ input, textarea {
 }
 
 .header__nav-item:not(:last-child) {
-  margin-right: 75.2px;
+  margin-right: 70px;
   white-space: nowrap;
 }
 
@@ -285,7 +286,7 @@ input, textarea {
 }
 
 .section-aboutus__paragraf {
-  max-width: 1235px;
+  max-width: 100%;
 }
 
 .section-aboutus__list {
@@ -723,6 +724,7 @@ input, textarea {
   fill: #ECECEC;
 }
 
+.deactivate,
 .section-questions__item:active .section-questions__question-icon path {
   transition: transform var(--time-magic);
   transform: rotate(45deg);
@@ -1234,12 +1236,22 @@ input, textarea {
   }
 }
 
+@media (max-width: 1700px) {
+  .header__nav-item:not(:last-child) {
+    margin-right: 50px;
+  }
+  
+}
+
 @media (min-width:1080px) and (max-width: 1600px) {
   .in_article {
     display: none;
   }
   .not_in_article {
     display: block;
+  }
+  .header__nav-item:not(:last-child) {
+    margin-right: 30px;
   }
 }
 
@@ -1252,6 +1264,18 @@ input, textarea {
   .unit-image {
     width: 600px;
     height: 500px;
+  }
+  
+  .header__nav-list {
+    margin-left: 0;
+    padding-right: 0;
+  }
+  .header__nav-item:not(:last-child) {
+    margin-right: 2px;
+    margin-left: 3px;
+  }
+  .header__icon {
+    margin-left: 5px;
   }
 }
 
@@ -1513,6 +1537,8 @@ input, textarea {
 @media (min-width: 1380px) {
   .section-aboutus__paragraf {
     margin-bottom: 47.5px;
+    font-size: 30px;
+    font-style: italic;
   }
 
   .main-content-item {

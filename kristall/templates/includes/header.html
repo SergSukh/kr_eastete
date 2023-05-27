@@ -71,7 +71,7 @@
                       <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
                     </li>
                     <li class="header__nav-item d-sm-1200-none" media="(min-width:1400px)" >
-                      {{ user.username }}
+                      <a class="header__nav-link" href="/admin/">{{ user.username }}</a>
                     <li>
                   </ul>
                 {% else %}

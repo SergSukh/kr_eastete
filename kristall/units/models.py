@@ -29,14 +29,14 @@ class Streets(models.Model):
 
 
 class Buildings(models.Model):
-    building = models.IntegerField('Здание')
+    building = models.IntegerField('Дом.')
     block = models.CharField('Корпус', max_length=5, blank=True, null=True)
     floors = models.IntegerField('Этажность здания', blank=True, null=True)
 
     def __str__(self) -> str:
         if self.block:
-            return f'стр. {self.building}, корп. {self.block}'
-        return f'стр. {self.building}'
+            return f'дом № {self.building}, корп. {self.block}'
+        return f'дом № {self.building}'
 
 
 class Unit(models.Model):
