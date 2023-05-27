@@ -41,9 +41,9 @@ def units_list_show(request, objs_list, title):
 
 def units_list(request):
     if request.user.is_staff:
-        objs = get_list_or_404(Unit)
+        objs = Unit.objects.all()
     else:
-        objs = get_list_or_404(Unit, published__answer=True)
+        objs = Unit.objects.filter(published__answer=True)
     return units_list_show(request, objs, 'Объекты')
 
 
