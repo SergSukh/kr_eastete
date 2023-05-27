@@ -57,7 +57,7 @@ class Unit(models.Model):
         Buildings, on_delete=models.CASCADE, related_name='units')
     floor = models.IntegerField('Этаж', blank=True, null=True)
     flat = models.IntegerField('Номер помещения', blank=True, null=True)
-    price = models.FloatField('Цена, тыс. руб', max_length=2)
+    price = models.FloatField('Цена, руб', max_length=2)
     deal = models.CharField(
         'Тип предложения',
         choices=deals,
@@ -90,10 +90,10 @@ class Unit(models.Model):
 
     def price_per_metr(self) -> float:
         return '{:,}'.format(
-            int(self.price * 1000 / self.square)).replace(',', '`')
+            int(self.price / self.square)).replace(',', '`')
 
     def unit_price(self):
-        return '{:,}'.format(int(self.price * 1000)).replace(',', '`')
+        return '{:,}'.format(int(self.price)).replace(',', '`')
 
 
 class Image(models.Model):
