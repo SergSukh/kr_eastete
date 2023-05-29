@@ -71,17 +71,20 @@
         <div class="unit-param-value description">{{ unit.description }}</div>
       </div>
       <hr>
-      <div class="menu-second detail-contact">
-        <a class="menu-second-item" type="button" href="tel:+79608266727">
-          <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
-          Позвонить
-          <p class="menu-second-item-comment"> +7 960 826-67-27</p>
-        </a>
-        <a class="menu-second-item" href="https://t.me/+79608266727">
-          <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
-          Написать
-          <p class="menu-second-item-comment"> в Телеграмм</p>
-        </a>
+      <div class="staff-menu detail-contact">
+        <ul style="display: flex; flex-direction: row;"> 
+          <li class="header__nav-item">
+            <a class="menu-second-item" type="button" href="tel:+79608266727">
+              <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
+              <p class="menu-second-item-comment"> +7 960 826-67-27</p>
+            </a>
+          </li>
+          <li class="header__nav-item">
+            <a class="menu-second-item" href="https://t.me/+79608266727">
+              <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
+            </a>
+          </li>
+        </ul>
       </div>
   </div>
 <!-- Скрипт перелистывания фото в шаблоне -->
