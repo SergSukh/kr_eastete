@@ -11,7 +11,7 @@
       <p class="header-adress">{{ unit.adress }}</p>
       <hr>
       {% if request.user.is_staff %}
-      <div class="menu-second">
+      <div class="staff-menu">
         <a class="menu-second-item" href="{% url 'units:unit_publicate' unit.id %}">
         {% if unit.is_published %}
         <str style="font-size: 14px;">  от: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации.. </str>

@@ -95,6 +95,9 @@ class Unit(models.Model):
     def unit_price(self):
         return '{:,}'.format(int(self.price)).replace(',', '`')
 
+    def get_short_description(self):
+        return self.description[:200]
+
 
 class Image(models.Model):
     unit = models.ForeignKey(
