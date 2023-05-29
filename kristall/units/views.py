@@ -23,6 +23,8 @@ def index(request):
 
 
 def units_list_show(request, objs_list, title):
+    if not request.user.is_staff:
+        objs_list = objs_list.filter(published__answer=True)
     for unit in objs_list:
         if unit.main_image():
             unit.img = get_thumbnail(
@@ -40,23 +42,17 @@ def units_list_show(request, objs_list, title):
 
 
 def units_list(request):
-    if request.user.is_staff:
-        objs = Unit.objects.all()
-    else:
-        objs = Unit.objects.filter(published__answer=True)
+    objs = Unit.objects.all()
     return units_list_show(request, objs, 'Объекты')
 
 
 def units_rent(request):
-    if request.user.is_staff:
-        objs = get_list_or_404(Unit, deal='Аренда')
-    else:
-        objs = get_list_or_404(Unit, deal='Аренда', published__answer=True)
+    objs = Unit.objects.filter(deal='Аренда')
     return units_list_show(request, objs, 'Аренда объектов')
 
 
 def units_sale(request):
-    objs = get_list_or_404(Unit, deal='Продажа')
+    objs = Unit.objects.filter(deal='Продажа')
     return units_list_show(request, objs, 'Продажа объектов')
 
 
