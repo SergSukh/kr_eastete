@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
-
 from users.validators import PhoneValidator
 
 User = get_user_model()
