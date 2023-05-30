@@ -26,21 +26,7 @@
       {% endif %}
       <div class="container unit-details">
         <aside class="unit-images">
-          <div class="carusel-container">
-            <div id="carousel" class="carusel">
-              <button class="arrow prev">⇦</button>
-              <div class="gallery">
-                <ul class="images">
-                  {% for image in unit.imgs %}
-                    <li class="unit-image">
-                      <div class="main-content-unit-img"  style="background-image: url({{image.url}})">AН Кристалл</div>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              <button class="arrow next">⇨</button>
-            </div>
-          </div>
+          {% include 'units/includes/images_slider.html' %}
         </aside>
         <article class="description-container">
           <div class="unit-description-price">
@@ -87,40 +73,5 @@
         </ul>
       </div>
   </div>
-<!-- Скрипт перелистывания фото в шаблоне -->
-<script>
-  let i = 1;
-  for(let li of carousel.querySelectorAll('li')) {
-    li.style.position = 'relative';
-    li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
-    i++;
-  }
 
-  /* конфигурация */
-  let img = document.querySelector(".main-content-unit-img")
-  let width = img.offsetWidth; // ширина картинки
-  console.log(img.offsetWidth)
-  let count = 1; // видимое количество изображений
-
-  let list = carousel.querySelector('ul');
-  let listElems = carousel.querySelectorAll('li');
-
-  let position = 0; // положение ленты прокрутки
-
-  carousel.querySelector('.prev').onclick = function() {
-    // сдвиг влево
-    position += width * count;
-    // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
-    position = Math.min(position, 0)
-    list.style.marginLeft = position + 'px';
-  };
-
-  carousel.querySelector('.next').onclick = function() {
-    // сдвиг вправо
-    position -= width * count;
-    // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
-    position = Math.max(position, -width * (listElems.length - count));
-    list.style.marginLeft = position + 'px';
-  };
-</script>
 {%endblock%}

@@ -15,6 +15,7 @@ deals = [
 
 
 class Citys(models.Model):
+    """Model City for adress"""
     city = models.CharField('Город', max_length=25, default='Самара')
 
     def __str__(self) -> str:
@@ -22,6 +23,7 @@ class Citys(models.Model):
 
 
 class Streets(models.Model):
+    """Street objects for adress"""
     street = models.CharField('Улица', max_length=50)
 
     def __str__(self) -> str:
@@ -29,6 +31,7 @@ class Streets(models.Model):
 
 
 class Buildings(models.Model):
+    """Home params"""
     building = models.IntegerField('Дом.')
     block = models.CharField('Корпус', max_length=5, blank=True, null=True)
     floors = models.IntegerField('Этажность здания', blank=True, null=True)
@@ -40,6 +43,7 @@ class Buildings(models.Model):
 
 
 class Unit(models.Model):
+    """Unit params"""
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
