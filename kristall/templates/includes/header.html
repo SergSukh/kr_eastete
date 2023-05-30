@@ -1,149 +1,169 @@
 {% load static %}
-<header class="header"> 
-  <div class="container header__container">
-    <ul class="menu-floors container">
-      <li class="menu-first header__container">
-        <div class="menu">
-          <button class="header__btn dropdown">
-            <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"  data-bs-toggle="dropdown" role="button">
-              <rect width="30" height="3" fill="#333333"/>
-              <rect y="10" width="30" height="3" fill="#333333"/>
-              <rect y="20" width="30" height="3" fill="#333333"/>
-            </svg>
-            <ul class="dropdown-menu">
-              <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Объекты:</a></li>
-              <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_sale' %}">Продажа</a></li>
-              <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_rent' %}">Аренда</a></li>
-              <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_list' %}">Все объекты</a></li>
-              <li class="dropdown-item"><a class="unit_create" href="{% url 'units:unit_create' %}">Разместить объект</a></li>
-              <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Контакты:</a></li>
-              <li class="dropdown-item">
-                {% if user.is_authenticated %}
-                  <ul class="header__nav-list">
-                    <li class="header__nav-item"> 
-                      <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
-                    </li>
-                    <li class="header__nav-item d-sm-1200-none">
-                      {{ user.username }}
-                    <li>
-                  </ul>
-                {% else %}
-                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
-                {% endif %}
-              </li>
-            </ul>
-          </button>
-        </div>
-        <div class="header__center">
-          <a class="header__logo-link" href="{% url 'units:index' %}">
-            <picture>
-              <source class="header__logo-img-small" srcset="{% static 'img/logo_1024.png' %}" media="(min-width:321px) and (max-width:1080px)">
-              <source class="header__logo-img-small" media="(max-width: 320px)" srcset="{% static 'img/logo_320.png' %}">
-              <img class="header__logo-img" src="{% static 'img/Logo.jpg' %}" alt="Кристалл Агенство Недвижимости">
-            </picture>
+<div class="container header__container">
+  <ul class="menu-floors container">
+    <li class="menu-first header__container">
+      <div class="menu">
+        <button class="header__btn dropdown">
+          <svg class="header__icon header__menu" width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg"  data-bs-toggle="dropdown" role="button">
+            <rect width="30" height="3" fill="#333333"/>
+            <rect y="10" width="30" height="3" fill="#333333"/>
+            <rect y="20" width="30" height="3" fill="#333333"/>
+          </svg>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Объекты:</a></li>
+            <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_sale' %}">Продажа</a></li>
+            <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_rent' %}">Аренда</a></li>
+            <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_list' %}">Все объекты</a></li>
+            <li class="dropdown-item"><a class="unit_create" href="{% url 'units:unit_create' %}">Разместить объект</a></li>
+            <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Контакты:</a></li>
+            <li class="dropdown-item">
+              {% if user.is_authenticated %}
+                <ul class="header__nav-list">
+                  <li class="header__nav-item"> 
+                    <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
+                  </li>
+                  <li class="header__nav-item d-sm-1200-none">
+                    {{ user.username }}
+                  <li>
+                </ul>
+              {% else %}
+                <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
+              {% endif %}
+            </li>
+          </ul>
+        </button>
+      </div>
+      <div class="header__center">
+        <a class="header__logo-link" href="{% url 'units:index' %}">
+          <picture>
+            <source class="header__logo-img-small" srcset="{% static 'img/logo_1024.png' %}" media="(min-width:321px) and (max-width:1080px)">
+            <source class="header__logo-img-small" media="(max-width: 320px)" srcset="{% static 'img/logo_320.png' %}">
+            <img class="header__logo-img" src="{% static 'img/Logo.jpg' %}" alt="Кристалл Агенство Недвижимости">
+          </picture>
+        </a>
+      </div>
+      <div class="header__right">
+        <nav class="header__nav">
+          <ul class="header__nav-list header__nav-menu">
+            <li class="header__nav-item dropdown">
+              <a class="header__nav-link" href="#" data-bs-toggle="dropdown" role="button">Объекты</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'units:units_sale' %}">Продажа</a>
+                <a class="dropdown-item" href="{% url 'units:units_rent' %}">Аренда</a>
+                <a class="dropdown-item" href="{% url 'units:units_list' %}">Все объекты</a>
+                <a class="dropdown-item" href="{% url 'units:unit_create' %}">Разместить объект</a>
+              </div>
+            </li>
+            <li class="header__nav-item">
+              <a class="header__nav-link" href="#">Новости</a>
+            </li>
+            <li class="header__nav-item">
+              <a class="header__nav-link" href="#">Отзывы</a>
+            </li>
+            <li class="header__nav-item">
+              <a class="header__nav-link" href="#">Контакты</a>
+            </li>
+            <li class="header__nav-item"> 
+              {% if user.is_authenticated %}
+                <ul class="header__nav-list">
+                  <li class="header__nav-item"> 
+                    <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
+                  </li>
+                  <li class="header__nav-item d-sm-1200-none" media="(min-width:1400px)" >
+                    <a class="header__nav-link" href="/admin/">{{ user.username }}</a>
+                  <li>
+                </ul>
+              {% else %}
+                <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
+              {% endif %}
+            </li>
+          </ul>
+          <ul class="header__nav-list menu__contact-first">
+            <li class="header__nav-item">
+              <a class="menu-second-item" type="button" href="tel:+79608266727">
+                <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
+                <p class="menu-second-item-comment"> +7 960 826-67-27</p>
+              </a>
+            </li>
+            <li class="header__nav-item">
+              <a class="menu-second-item" href="https://t.me/+79608266727">
+                <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__icon-search_field">{% include 'units/includes/easy_search.html' %}</div>
+        <button class="header__btn header__search-link">
+          <svg class="header__icon header__icon-search" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="7.56126" height="1.89031" transform="matrix(0.713342 0.700816 -0.713342 0.700816 18.6062 17.3762)" fill="#333333"/>
+            <path d="M20.9303 10.7726C20.9303 16.1533 16.4855 20.5452 10.9652 20.5452C5.44478 20.5452 1 16.1533 1 10.7726C1 5.39198 5.44478 1 10.9652 1C16.4855 1 20.9303 5.39198 20.9303 10.7726Z" stroke="#333333" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+    </li>
+    <li class="menu-second">
+      <ul class="header__nav-list" style="display: inline-flex; margin-left: 0; padding-right: 5px;">
+        <li class="header__nav-item">
+          <a class="menu-second-item" type="button" href="tel:+79608266727">
+            <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
+            <p class="menu-second-item-comment"> +7 960 826-67-27</p>
           </a>
-        </div>
-        <div class="header__right">
-          <nav class="header__nav">
-            <ul class="header__nav-list header__nav-menu">
-              <li class="header__nav-item dropdown">
-                <a class="header__nav-link" href="#" data-bs-toggle="dropdown" role="button">Объекты</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'units:units_sale' %}">Продажа</a>
-                  <a class="dropdown-item" href="{% url 'units:units_rent' %}">Аренда</a>
-                  <a class="dropdown-item" href="{% url 'units:units_list' %}">Все объекты</a>
-                  <a class="dropdown-item" href="{% url 'units:unit_create' %}">Разместить объект</a>
-                </div>
-              </li>
-              <li class="header__nav-item">
-                <a class="header__nav-link" href="#">Новости</a>
-              </li>
-              <li class="header__nav-item">
-                <a class="header__nav-link" href="#">Отзывы</a>
-              </li>
-              <li class="header__nav-item">
-                <a class="header__nav-link" href="#">Контакты</a>
-              </li>
-              <li class="header__nav-item"> 
-                {% if user.is_authenticated %}
-                  <ul class="header__nav-list">
-                    <li class="header__nav-item"> 
-                      <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:logout' %}active{% endif %}" href="{% url 'users:logout' %}">Выйти</a>
-                    </li>
-                    <li class="header__nav-item d-sm-1200-none" media="(min-width:1400px)" >
-                      <a class="header__nav-link" href="/admin/">{{ user.username }}</a>
-                    <li>
-                  </ul>
-                {% else %}
-                  <a class="header__nav-link {% if request.resolver_match.view_name  == 'users:login' %}active{% endif %}" href="{% url 'users:login' %}"> Войти </a>
-                {% endif %}
-              </li>
-            </ul>
-            <ul class="header__nav-list menu__contact-first">
-              <li class="header__nav-item">
-                <a class="menu-second-item" type="button" href="tel:+79608266727">
-                  <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
-                  <p class="menu-second-item-comment"> +7 960 826-67-27</p>
-                </a>
-              </li>
-              <li class="header__nav-item">
-                <a class="menu-second-item" href="https://t.me/+79608266727">
-                  <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <button class="header__btn header__search-link">
-            <svg class="header__icon header__icon-search" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="7.56126" height="1.89031" transform="matrix(0.713342 0.700816 -0.713342 0.700816 18.6062 17.3762)" fill="#333333"/>
-              <path d="M20.9303 10.7726C20.9303 16.1533 16.4855 20.5452 10.9652 20.5452C5.44478 20.5452 1 16.1533 1 10.7726C1 5.39198 5.44478 1 10.9652 1C16.4855 1 20.9303 5.39198 20.9303 10.7726Z" stroke="#333333" stroke-width="2"/>
-            </svg>
-          </button>
-        </div>
-      </li>
-      <li class="menu-second">
-        <ul class="header__nav-list" style="display: inline-flex; margin-left: 0; padding-right: 5px;">
-          <li class="header__nav-item">
-            <a class="menu-second-item" type="button" href="tel:+79608266727">
-              <img style="max-width: 30px; margin-right: 5px;" class="header__link-img" src="{% static 'img/phone.png' %}" alt="link2phone">
-              <p class="menu-second-item-comment"> +7 960 826-67-27</p>
-            </a>
-          </li>
-          <li class="header__nav-item">
-            <a class="menu-second-item" href="https://t.me/+79608266727">
-              <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <hr>
-  <script>
-    // Для визуализации активных кнопок меню
-    let menuLinks = document.querySelectorAll('.auto_active_link');
-    for (let link of menuLinks) {
-      link.classList.remove('active');
+        </li>
+        <li class="header__nav-item">
+          <a class="menu-second-item" href="https://t.me/+79608266727">
+            <img style="max-width: 50px;" class="header__link-img" src="{% static 'img/tgrm.png' %}" alt="link 2 telegram">
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<hr>
+<script>
+  // Для визуализации активных кнопок меню
+  let menuLinks = document.querySelectorAll('.auto_active_link');
+  for (let link of menuLinks) {
+    link.classList.remove('active');
+  }
+  for (let link of menuLinks) {
+    let currentLink = localStorage.getItem('active_link');
+    if (link.id === currentLink) {
+      link.classList.add('active');
     }
-    for (let link of menuLinks) {
-      let currentLink = localStorage.getItem('active_link');
-      if (link.id === currentLink) {
-        link.classList.add('active');
-      }
+  }
+
+  document.addEventListener('click', (event) => saveNextLink(event));
+
+  function saveNextLink(event) {
+    let link = event.target.closest('.auto_active_link');
+    if (link) {
+      localStorage.setItem('active_link', link.id);
     }
+  }
 
-    document.addEventListener('click', (event) => saveNextLink(event));
 
-    function saveNextLink(event) {
-      let link = event.target.closest('.auto_active_link');
-      if (link) {
-        localStorage.setItem('active_link', link.id);
-      }
+</script>
+<script>
+  this.addEventListener('click', (e) => {
+    const elHeader = e.target.closest('.header__search-link');
+    const field = elHeader.parentElement.querySelector('.header__icon-search_field');
+    if (!elHeader) {
+      return
+      console.log('Element not find');
     }
-
-
+    field.classList.toggle('search');
+  });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-</header>
+<style>
+  .header__icon-search_field {
+    display: none;
+  }
+  .search {
+    display: block;
+    position: absolute;
+    margin-top: 250px;
+  }
+</style>

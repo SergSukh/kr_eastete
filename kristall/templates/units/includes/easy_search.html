@@ -1,0 +1,44 @@
+<div class="easy_search">
+    <form action="{% url 'units:search_result'%}" method="get">
+        <ul>
+            <li class="easy_searh_field">
+                <div class="label_search">Тип сделки</div>
+                    <select name="deal">
+                        <option value="Аренда">Аренда</option>
+                        <option value="Продажа">Продажа</option>
+                    </select>
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Тип помещения</div><input name="q" type="text" placeholder="Быстрый поиск...">
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Улица</div><input name="street" type="text" placeholder="Введите улицу...">
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Площадь</div><input name="square" type="text" placeholder="Примерная площадь...">
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Цена</div><input name="price" type="text" placeholder="Цена...">
+            </li>
+        </ul>
+        <button type="submit" class="btn btn-primary search_btn">Подобрать</button>
+    </form>
+</div>
+<style>
+    .easy_search {
+        width: 100%;
+        padding: 7px;
+        background-color: grey;
+        border: 2px solid grey;
+        border-radius: 10px;
+    }
+    .easy_search_field {
+        display: flex;
+        flex-direction: row;
+    }
+    .search_btn {
+        margin-top: 5px;
+        padding: 5px;
+        border-radius: 8px;
+    }
+</style>

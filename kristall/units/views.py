@@ -1,14 +1,35 @@
 from datetime import datetime as dt
+from typing import Any
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import (get_object_or_404, get_list_or_404,
+from django.db.models import Q
+from django.db.models.query import QuerySet
+from django.shortcuts import (get_object_or_404,
                               redirect, render)
+from django.views.generic import TemplateView, ListView
 from sorl.thumbnail import get_thumbnail
 
 from .forms import ImagesFormSet, MessageForm, UnitCreateForm, UnitForm
 from .models import Buildings, Citys, Image, Published, Streets, Unit
+
+
+class IndexPageView(TemplateView):
+    template_name = 'units/index.html'
+
+
+class SearchResultView(ListView):
+    model = Unit
+    template_name = 'units/units_list.html'
+
+    def get_queryset(self) -> QuerySet[Any]:
+        query = self.request.GET.get('q')
+        objs = Unit.objects.filter(
+            Q(deal__icontains=query) |
+            Q(name__icontains='офис')
+        )
+        return objs
 
 
 def pages(request, unit_list):
@@ -55,6 +76,24 @@ def units_sale(request):
     objs = Unit.objects.filter(deal='Продажа')
     return units_list_show(request, objs, 'Продажа объектов')
 
+
+def search_units(request):
+    deal = request.GET.get('deal')
+    name = request.GET.get('q')
+    square = request.GET.get('square')
+    square = (float(square) if square else 0)
+    price = request.GET.get('price')
+    price = (float(price) if price else 999999999)
+    objs = Unit.objects.filter(
+        Q(deal__iregex=deal)|
+        Q(name__iregex=name),
+        Q(street__street__icontains=request.GET.get('street'))
+    )
+    obj_list = []
+    for obj in objs:
+        if obj.check_square(square) and obj.check_price(price):
+            obj_list.append(obj)
+    return units_list_show(request, objs, 'Объекты по запросу')
 
 def unit_detail(request, unit_id):
     unit = get_object_or_404(Unit, id=unit_id)

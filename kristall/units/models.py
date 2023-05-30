@@ -102,6 +102,12 @@ class Unit(models.Model):
     def get_short_description(self):
         return self.description[:200]
 
+    def check_square(self, sq):
+        return self.square >= sq
+
+    def check_price(self, pr):
+        return self.price <= pr
+
 
 class Image(models.Model):
     unit = models.ForeignKey(
