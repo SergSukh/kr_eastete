@@ -38,7 +38,11 @@
           </div>
           <div class="unit-param">
             <div class="unit-param-name">Адрес:</div>
-            <div class="unit-param-value">{{ unit.adress }}</div>
+            <div class="unit-param-value">
+              <span class="ymaps-geolink">
+                {{ unit.adress }}
+              </span>
+              </div>
           </div>
           <hr>
           <div class="unit-param">
@@ -73,5 +77,6 @@
         </ul>
       </div>
   </div>
-
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=d2fa0b87-d187-4ef3-ac5f-db2ce653d705&lang=ru_RU&load=Geolink"
+  type="text/javascript"></script>
 {%endblock%}
