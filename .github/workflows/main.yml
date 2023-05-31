@@ -66,8 +66,6 @@ jobs:
           sudo docker-compose rm -f nginx
           sudo docker-compose rm -f web
           sudo docker image rm ${{ secrets.DOCKER_USERNAME }}/kristall
-          sudo docker image rm nginx
-          sudo docker volume rm static_value
           rm .env
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env

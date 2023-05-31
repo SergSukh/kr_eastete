@@ -1,385 +1,84 @@
-{% load static%}
+{% load static %}
 
-<div class="slider" id="slider">
-  <ul class="slider__container">
+<swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+    thumbs-swiper=".mySwiper2" loop="true" space-between="10" navigation="true">
+        {% for image in unit.imgs %}
+            <swiper-slide>
+              <img src="{{image.url}}" alt="Фото объекта">
+            </swiper-slide>
+        {% endfor %}
+  </swiper-container>
+
+  <swiper-container class="mySwiper2" loop="true" space-between="10" slides-per-view="4" free-mode="true"
+    watch-slides-progress="true">
     {% for image in unit.imgs %}
-    <li class="slider__item .is-active">
-      <figure class="slider__itemImage" style="background-image: url({{image.url}})">
-    </li>
+      <swiper-slide>
+        <img src="{{image.url}}">
+      </swiper-slide>
     {% endfor %}
-    <div class="slider__prev.">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="32" viewBox="-1 -1 12 32">
-        <path d="M 10,0 0,15 10,30" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="slider__next.is-active.">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="32" viewBox="-1 -1 12 32">
-        <path d="M0 0l10 15L0 30" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  <ul class="navThumbs">
-    <li class="navThumbs__item is-active" style='background-image:url(https://c2.staticflickr.com/4/3514/3966939242_e29867a563_b.jpg);'></li>
-    <li class="navThumbs__item" style='background-image:url(https://c1.staticflickr.com/3/2538/3962063373_0e822b6884_b.jpg);'></li>
-    <li class="navThumbs__item" style='background-image:url(https://c2.staticflickr.com/4/3432/3962896089_61f26f53d4_b.jpg);'></li>
-    <li class="navThumbs__item" style='background-image:url(https://c2.staticflickr.com/4/3437/3958614732_3a528b9648_b.jpg);'></li>
-  </ul>
+  </swiper-container>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 <style>
-@import 'breakpoint';
-
-$desktop: 60em;
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  color: #333;
-  font-family: 'industry', sans-serif;
-}
-
-.slider {
   
-  & {
+  swiper-container {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
+    height: 100%;
   }
-  
-  &__container {
-    list-style:none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-  }
-  
-  &__item {
-    position: absolute;
-    width: 500px;
-    height: 100vh;    
-  }
-  
-  &__itemImage {
-    margin: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 500px;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 500px;
-      height: 100%;
-      /* Rectangle 1: */
-      background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.5) 100%);
-    }
-  }
-  
-  &__itemText {
+
+  swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
+  }
+
+  swiper-slide img {
+    display: sw </swiper-slidek;
     width: 100%;
     height: 100%;
-    z-index: 20;
-    font-size: 1rem;
-    color: #fff;
+    object-fit: cover;
   }
-  
-  &__itemTitle {
-    text-transform: uppercase;
-    width: 100%;
-    padding: 0 2em;
-    font-size: 2em;    
-    font-weight: 300;
-    text-align: center;
-    margin: .5rem 0 0;
-    font-weight: 300;
-    
-    @include breakpoint($desktop) {
-      font-size: 4em;
-      width: 50%;
-      margin: 0 auto;
-      padding: 0;
-    }
-  }
-  
-  &__itemSubtitle {
-    width: 40%;
-    font-size: 1.25em;
-    text-align: center;
-    line-height: 1.4;
-    display: none;
-  }
-  
-  &__prev,
-  &__next {
-    cursor: default;
-    z-index: 50;
-    width: 0.875em;
-    
-    svg {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    
-    &.is-active {
-      cursor: pointer;
-    }
-  }
-  
-  &__prev {
-    position: absolute;
-    left: 1em;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  &__next {
-    position: absolute;
-    right: 1em;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-}
 
-.navThumbs {
-  
-  & {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 500;
-    z-index: 100;
-    list-style: none;
-    margin: 0;
-    padding: 0;    
+  swiper-container {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  &__item {
-    width: 75px;
-    height: 40px;
+
+  swiper-slide {
     background-size: cover;
     background-position: center;
-    float: left;
-    margin: 0 0.5em;
-    cursor: pointer;
-    
-    @include breakpoint($desktop) {
-      width: 150px;
-      height: 100px;
-    }
-    
-    &.is-active {
-      opacity: .5;
-      cursor: default;
-    }
   }
-}
+
+  .mySwiper {
+    height: 80%;
+    width: 100%;
+  }
+
+  .mySwiper2 {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+
+  .mySwiper2 swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  .mySwiper2 .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  swiper-slide img {
+    display: sw </swiper-slidek;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 </style>
-<script>
-    /* Get index of element
-http://stackoverflow.com/questions/27854824/vanilla-js-replacements-for-jquerys-index-and-eq*/
-function index(element){
-    var sib = element.parentNode.childNodes;
-    var n = 0;
-    for (var i=0; i<sib.length; i++) {
-         if (sib[i]==element) return n;
-         if (sib[i].nodeType==1) n++;
-    }
-    return -1; 
-  };
-  
-  function getSiblings(elem) {
-    var siblings = [];
-    var sibling = elem.parentNode.firstChild;
-    for ( ; sibling; sibling = sibling.nextSibling ) {
-      if ( sibling.nodeType === 1 && sibling !== elem ) {
-        siblings.push( sibling );
-      }
-    }
-    return siblings;
-  };
-  
-  var Slider = function() {
-    var
-      slider,
-      activeSlide,
-      slides,
-      slideWidth,
-      slideNavPrev,
-      slideNavNext,
-      slideNavThumbs;
-  
-    var _init = function() {
-      slider          = document.getElementById('slider');
-      slideContainer  = document.getElementsByClassName('slider__container')[0];
-      activeSlide     = document.getElementsByClassName('is-active')[0];
-      slides          = document.getElementsByClassName('slider__item');
-      slides          = Array.prototype.slice.call(slides, 0);
-      slideNavPrev    = document.getElementsByClassName('slider__prev')[0];
-      slideNavNext    = document.getElementsByClassName('slider__next')[0];   
-      slideNavThumbs  = document.getElementsByClassName('navThumbs__item');
-      slideNavThumbs  = Array.prototype.slice.call(slideNavThumbs, 0);
-      slideWidth      = parseInt(getComputedStyle(slideContainer).width);
-  
-      _prepare();
-      _addEventHandlers();
-      _animateFirst();
-    }
-    
-    var _addEventHandlers = function() {
-      slideNavNext.addEventListener('click', _goToNext, false);
-      slideNavPrev.addEventListener('click', _goToPrev, false);
-      // document.addEventListener("keydown", handleKeyboardNav, false);
-      slideNavThumbs.forEach(function(element, index) {
-        element.classList.remove('is-active');
-        element.addEventListener('click', _goToClicked, false);
-      });
-    }
-    
-    var _prepare = function() {
-      slides.forEach(function(element,index) {
-        if(!element.classList.contains('is-active')) {
-          TweenLite.set(element, {autoAlpha: 0});
-        }
-      });
-      TweenLite.set(slideNavPrev, {autoAlpha: 0.2});
-    }
-    
-    var _animateFirst = function() {
-      
-      var slideInTitle      = activeSlide.children[1].children[0];
-      slideInTitle = new SplitText(slideInTitle);
-      var _resetTitle       = function() {
-        splitSlideInTitle.revert();
-      }
-      
-      var tl = new TimelineLite({onComplete:_resetTitle});
-      tl
-        .staggerFromTo(slideInTitle.chars, 0.6, {opacity:0, scale:0, y:80, rotationX:180, transformOrigin:"0% 50% -50", ease:Back.easeOut }, { opacity:1, scale:1, y:0, rotationX:0 }, 0.03, '-=0.3');      
-    }
-    
-    var _animateNext = function(slideOut, slideIn) {    
-      var slideOutTitle       = slideOut.children[1].children[0];
-      var slideOutSubtitle    = slideOut.children[1].children[1];    
-      var size                = slides.length;   
-      
-      if(slideIn) {      
-        var slideInTitle      = slideIn.children[1].children[0];
-        var splitSlideInTitle = new SplitText(slideInTitle);
-        var slideInSubtitle   = slideIn.children[1].children[1];
-        var _resetTitle       = function() {
-          splitSlideInTitle.revert();
-        }
-        
-        var tl = new TimelineLite({onComplete:_resetTitle});      
-        tl        
-          .set(slideIn, {x:'100%', autoAlpha:1, className:'+=is-active'})
-          .set(slideOut, {className: '-=is-active'})     
-          .to(slideOutTitle, 0.3, {autoAlpha: 0, y:-50, ease:Power2.easeOut}, 0)
-          .to(slideOut, 0.9, {x: '-100%', ease:Power2.easeOut}, 0)
-          .to(slideIn, 0.9, {x: '-=100%', ease:Power2.easeOut}, 0)
-          .staggerFromTo(splitSlideInTitle.chars, 0.6, {opacity:0, scale:0, y:80, rotationX:180, transformOrigin:"0% 50% -50", ease:Back.easeOut }, { opacity:1, scale:1, y:0, rotationX:0 }, 0.03, '-=0.3');      
-        if(index(slideIn) === size-1) {
-          TweenLite.to(slideNavNext, 0.3, {autoAlpha: 0.2, ease:Linear.easeNone, className:'-=is-active'});
-        }     
-      }    
-      TweenLite.set(slideNavPrev, {autoAlpha: 1, className:'+=is-active'});    
-    }
-    
-    var _goToNext = function() {
-      var slideOut = document.getElementsByClassName('is-active')[0];
-      var slideIn  = slideOut.nextElementSibling;
-      _animateNext(slideOut, slideIn)
-    }
-    
-    var _animatePrev = function(slideOut, slideIn) {
-      var slideOutTitle       = slideOut.children[1].children[0];
-      var tl      = new TimelineLite();
-      
-      if(slideIn) {
-        var slideInTitle      = slideIn.children[1].children[0];
-        var _resetTitle = function() {
-          splitSlideInTitle.revert();
-        }
-        var splitSlideInTitle = new SplitText(slideInTitle);
-        var tl      = new TimelineLite({onComplete: _resetTitle});
-        tl
-          .set(slideIn, {x:'-100%', autoAlpha:1, className:'+=is-active'})
-          .set(slideOut, {className: '-=is-active'})
-          .set(slideInTitle, {y:0, autoAlpha:1})
-          .to(slideOut, 0.9, {x: '100%', ease:Power2.easeOut}, 0)
-          .to(slideIn, 0.9, {x: '+=100%', ease:Power2.easeOut}, 0)
-          .staggerFromTo(splitSlideInTitle.chars, 0.8, {
-              opacity:0, 
-              scale:0, 
-              y:80, 
-              rotationX:180, 
-              transformOrigin:"0% 50% -50",  
-              ease:Back.easeOut
-            },
-            {
-              opacity:1,
-              scale:1,
-              y:0,
-              rotationX:0
-            }, 0.03, '-=0.3')
-        if(index(slideIn) === 0){
-            TweenLite.to(slideNavPrev, 0.3, {autoAlpha: 0.2, ease:Linear.easeNone, className:'-=is-active'});
-          }
-      }
-      TweenLite.set(slideNavNext, {autoAlpha: 1, className:'+=is-active'});
-    }
-    
-    var _goToPrev = function() {    
-      var slideOut = document.getElementsByClassName('is-active')[0];
-      var slideIn = slideOut.previousElementSibling;
-      _animatePrev(slideOut, slideIn);
-    }
-    
-    var _goToClicked = function() {
-      var clickedSlide  = index(this);
-      var slideOut      = document.getElementsByClassName('is-active')[0];
-      var slideIn       = document.getElementsByClassName('slider__item')[clickedSlide]; 
-       var siblings = getSiblings(this);
-        siblings.forEach(function(element, index) {
-          element.classList.remove('is-active')
-        })
-      if(clickedSlide > index(slideOut)) {     
-        this.classList.add('is-active')
-        _animateNext(slideOut, slideIn)
-      } else if(index(slideOut) > clickedSlide) {
-        this.classList.add('is-active')
-        _animatePrev(slideOut, slideIn)
-      }   
-    }
-   
-    
-    var handleKeyboardNav = function(e) {
-      if (!e) e = window.event;
-      var kc = e.keyCode;
-      if (kc == 37) _goToPrev();
-      if (kc == 39) _goToNext();
-    }
-    
-    return {
-      init: _init
-    }
-  }();
-  
-  Slider.init();
-</script>
