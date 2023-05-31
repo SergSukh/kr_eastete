@@ -19,28 +19,11 @@ class IndexPageView(TemplateView):
     template_name = 'units/index.html'
 
 
-class SearchResultView(ListView):
-    model = Unit
-    template_name = 'units/units_list.html'
-
-    def get_queryset(self) -> QuerySet[Any]:
-        query = self.request.GET.get('q')
-        objs = Unit.objects.filter(
-            Q(deal__icontains=query) |
-            Q(name__icontains='офис')
-        )
-        return objs
-
-
 def pages(request, unit_list):
     units_in_page = settings.UNITS_IN_PAGE
     paginator = Paginator(unit_list, units_in_page)
     page_number = request.GET.get('page')
     return paginator.get_page(page_number)
-
-
-def index(request):
-    return render(request, 'units/index.html')
 
 
 def units_list_show(request, objs_list, title):
@@ -77,13 +60,21 @@ def units_sale(request):
     return units_list_show(request, objs, 'Продажа объектов')
 
 
+def get_search_min_param(param):
+    return (float(param) if param else 0)
+
+
+def get_search_max_param(param):
+    return (float(param) if param else 999999999)
+
+
 def search_units(request):
     deal = request.GET.get('deal')
     name = request.GET.get('q')
-    square = request.GET.get('square')
-    square = (float(square) if square else 0)
-    price = request.GET.get('price')
-    price = (float(price) if price else 999999999)
+    sq_min = get_search_min_param(request.GET.get('sq_min'))
+    sq_max = get_search_max_param(request.GET.get('sq_max'))
+    pr_min = get_search_min_param(request.GET.get('pr_min'))
+    pr_max = get_search_max_param(request.GET.get('pr_max'))
     objs = Unit.objects.filter(
         Q(deal__iregex=deal)|
         Q(name__iregex=name),
@@ -91,7 +82,7 @@ def search_units(request):
     )
     obj_list = []
     for obj in objs:
-        if obj.check_square(square) and obj.check_price(price):
+        if obj.check_square(sq_min, sq_max) and obj.check_price(pr_min, pr_max):
             obj_list.append(obj)
     return units_list_show(request, objs, 'Объекты по запросу')
 
