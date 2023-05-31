@@ -69,7 +69,7 @@ class Unit(models.Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.name}. {self.square}'.upper()
+        return f'{self.name}, {self.square}'.upper()
 
     def adress(self) -> str:
         return f'г. {self.city}, ул. {self.street}, {self.build}'

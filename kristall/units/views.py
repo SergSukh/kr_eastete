@@ -71,11 +71,16 @@ def get_search_max_param(param):
 def search_units(request):
     deal = request.GET.get('deal')
     name = request.GET.get('q')
+    if request.user.is_staff:
+        public = None if request.GET.get('public') else True
+    else:
+        public = True
     sq_min = get_search_min_param(request.GET.get('sq_min'))
     sq_max = get_search_max_param(request.GET.get('sq_max'))
     pr_min = get_search_min_param(request.GET.get('pr_min'))
     pr_max = get_search_max_param(request.GET.get('pr_max'))
     objs = Unit.objects.filter(
+        Q(published__answer=public),
         Q(deal__iregex=deal)|
         Q(name__iregex=name),
         Q(street__street__icontains=request.GET.get('street'))
