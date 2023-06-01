@@ -80,9 +80,9 @@ def search_units(request):
     pr_min = get_search_min_param(request.GET.get('pr_min'))
     pr_max = get_search_max_param(request.GET.get('pr_max'))
     objs = Unit.objects.filter(
-        Q(published__answer=public),
-        Q(deal__iregex=deal)|
+        Q(deal__iregex=deal),
         Q(name__iregex=name),
+        Q(published__answer=public),
         Q(street__street__icontains=request.GET.get('street'))
     )
     obj_list = []
@@ -90,6 +90,7 @@ def search_units(request):
         if obj.check_square(sq_min, sq_max) and obj.check_price(pr_min, pr_max):
             obj_list.append(obj)
     return units_list_show(request, objs, 'Объекты по запросу')
+
 
 def unit_detail(request, unit_id):
     unit = get_object_or_404(Unit, id=unit_id)
