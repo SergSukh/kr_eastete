@@ -105,7 +105,7 @@ def unit_detail(request, unit_id):
                 quality=99
             )
         )
-    return render(request, 'units/unit_detail.html', {'unit': unit})
+    return render(request, 'units/unit_detail.html', {'unit': unit, 'YandexMapsAPI': settings.YANDEX_MAPS_API})
 
 
 def save_images(unit, images):

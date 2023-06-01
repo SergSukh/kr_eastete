@@ -182,3 +182,5 @@ LOGIN_REDIRECT_URL = 'units:index'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 UNITS_IN_PAGE = 12
+
+YANDEX_MAPS_API = os.getenv('YANDEX_MAPS', default='https://api-maps.yandex.ru/2.1/?apikey=<get-your-api-key>&lang=ru_RU&load=Geolink')
