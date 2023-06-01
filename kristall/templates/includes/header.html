@@ -146,11 +146,11 @@
 <script>
   this.addEventListener('click', (e) => {
     const elHeader = e.target.closest('.header__search-link');
-    const field = elHeader.parentElement.querySelector('.header__icon-search_field');
     if (!elHeader) {
       return
       console.log('Element not find');
     }
+    const field = elHeader.parentElement.querySelector('.header__icon-search_field');
     field.classList.toggle('search');
   });
 </script>
@@ -164,6 +164,7 @@
   .search {
     display: block;
     position: absolute;
+    z-index: +10;
     margin-top: 350px;
     margin-right: 50px;
   }
