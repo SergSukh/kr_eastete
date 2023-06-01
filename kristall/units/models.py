@@ -69,7 +69,9 @@ class Unit(models.Model):
     )
 
     def __str__(self) -> str:
-        return f'{self.name}, {self.square}'.upper()
+        if str(self.name)[-1] not in ['.', ',', '!', ';', ':']:
+            return f'{self.name}, {self.square}'.upper()
+        return f'{self.name} {self.square}'.upper()
 
     def adress(self) -> str:
         return f'г. {self.city}, ул. {self.street}, {self.build}'
@@ -102,11 +104,8 @@ class Unit(models.Model):
     def get_short_description(self):
         return self.description[:200]
 
-    def check_square(self, sq_min, sq_max):
-        return sq_max >= self.square >= sq_min
-
-    def check_price(self, pr_min, pr_max):
-        return pr_min <= self.price <= pr_max
+    def check_param(self, param_min, param, param_max):
+        return param_min <= param <= param_max
 
 
 class Image(models.Model):

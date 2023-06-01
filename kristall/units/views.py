@@ -87,7 +87,10 @@ def search_units(request):
     )
     obj_list = []
     for obj in objs:
-        if obj.check_square(sq_min, sq_max) and obj.check_price(pr_min, pr_max):
+        if (
+            obj.check_param(sq_min, obj.square, sq_max) and
+            obj.check_param(pr_min, obj.price, pr_max)
+        ):
             obj_list.append(obj)
     return units_list_show(request, objs, 'Объекты по запросу')
 
@@ -105,7 +108,11 @@ def unit_detail(request, unit_id):
                 quality=99
             )
         )
-    return render(request, 'units/unit_detail.html', {'unit': unit, 'YandexMapsAPI': settings.YANDEX_MAPS_API})
+    return render(
+        request,
+        'units/unit_detail.html',
+        {'unit': unit, 'YandexMapsAPI': settings.YANDEX_MAPS_API}
+    )
 
 
 def save_images(unit, images):
