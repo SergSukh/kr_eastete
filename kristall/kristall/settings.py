@@ -8,18 +8,9 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
-
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -102,6 +93,9 @@ CACHES = {
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://158.160.55.161',
+    'http://kristall-an.ru',
+    'http://www.kristall-an.ru',
+    'https://www.kristall-an.ru'
 ]
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
