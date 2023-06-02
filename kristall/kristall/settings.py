@@ -74,12 +74,12 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
-            'NAME': os.getenv('DB_NAME', default='postgres'),
-            'USER': os.getenv('POSTGRES_USER', default='postgres'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-            'HOST': os.getenv('DB_HOST', default='db'),
-            'PORT': os.getenv('DB_PORT')
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('POSTGRES_USER'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+            'HOST': 'db',
+            'PORT': 5432
         }
     }
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -178,3 +178,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 UNITS_IN_PAGE = 12
 
 YANDEX_MAPS_API = os.getenv('YANDEX_MAPS', default='https://api-maps.yandex.ru/2.1/?apikey=<get-your-api-key>&lang=ru_RU&load=Geolink')
+
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_CHAT = os.getenv('TELEGRAM_CHAT')
