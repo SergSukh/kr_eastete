@@ -68,6 +68,9 @@ class Unit(models.Model):
         max_length=max(len(deal[1]) for deal in deals), default=SALE
     )
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self) -> str:
         if str(self.name)[-1] not in ['.', ',', '!', ';', ':']:
             return f'{self.name}, {self.square}'.upper()
