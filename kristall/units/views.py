@@ -15,7 +15,7 @@ from telegram import Bot
 from .forms import ImagesFormSet, MessageForm, UnitCreateForm, UnitForm
 from .models import Buildings, Citys, Image, Published, Streets, Unit
 
-BOT = Bot(token=settings.TELEGRAM_TOKEN)
+# BOT = Bot(token=settings.TELEGRAM_TOKEN)
 
 class IndexPageView(TemplateView):
     template_name = 'units/index.html'
@@ -205,13 +205,13 @@ def unit_edit(request, unit_id):
 def msg_create(request):
     email = request.GET.get('email')
     contact = (f', E-mail: {email}' if email else '.') 
-    BOT.send_message(
-        chat_id=settings.TELEGRAM_CHAT,
-        text=f'{request.GET.get("name")}, оставил на сайте сообщение:')
-    BOT.send_message(
-        chat_id=settings.TELEGRAM_CHAT,
-        text=f'{request.GET.get("text")}')
-    BOT.send_message(
-        chat_id=settings.TELEGRAM_CHAT,
-        text=f'Контактная информация тел: {request.GET.get("phone")}{contact}')
+    #BOT.send_message(
+    #    chat_id=settings.TELEGRAM_CHAT,
+    #    text=f'{request.GET.get("name")}, оставил на сайте сообщение:')
+    #BOT.send_message(
+    #    chat_id=settings.TELEGRAM_CHAT,
+    #    text=f'{request.GET.get("text")}')
+    #BOT.send_message(
+    #    chat_id=settings.TELEGRAM_CHAT,
+    #    text=f'Контактная информация тел: {request.GET.get("phone")}{contact}')
     return redirect('units:units_list')
