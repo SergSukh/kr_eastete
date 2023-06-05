@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-from units.models import Unit
-from users.validators import PhoneValidator
+from ..units.models import Unit
+from ..users.validators import PhoneValidator
 
 User = get_user_model()
 
@@ -24,11 +24,15 @@ class Message(models.Model):
         validators=[PhoneValidator()]
     )
     date = models.DateField('Дата', auto_created=True, auto_now_add=True)
-    ip = models.ForeignKey(Ip, on_delete=models.CASCADE, related_name='messages')
+    ip = models.ForeignKey(
+        Ip,
+        on_delete=models.CASCADE,
+        related_name='messages'
+    )
 
     class Meta:
         ordering = ['-date']
-    
+
     def __str__(self) -> str:
         return f'{self.name}: {self.message}'[:100]
 

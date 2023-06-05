@@ -15,8 +15,8 @@ def get_client_ip(request):
 
 
 def save_ip(request):
-    ip = Ip.objects.get_or_create(ip=get_client_ip(request))[0]
-    return ip
+    return Ip.objects.get_or_create(ip=get_client_ip(request))[0]
+
 
 def msg_create(request):
     name = request.POST.get('name')
