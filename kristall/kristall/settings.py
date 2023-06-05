@@ -181,4 +181,4 @@ UNITS_IN_PAGE = 12
 YANDEX_MAPS_API = os.getenv('YANDEX_MAPS', default='https://api-maps.yandex.ru/2.1/?apikey=<get-your-api-key>&lang=ru_RU&load=Geolink')
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-TELEGRAM_CHAT = 6188915417
+TELEGRAM_CHAT = '419728922'

@@ -12,7 +12,7 @@ def get_client_ip(request):
     if x_frwrdd:
         return x_frwrdd.split(',')[0]
     return (
-        request.META.get('REMOTE_ADDR') + ':' + request.META.get('REMOTE_PORT')
+        f"{request.META.get('REMOTE_ADDR')}: {request.META.get('REMOTE_PORT')}"
     )
 
 
