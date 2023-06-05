@@ -49,7 +49,3 @@ class User(AbstractUser):
     @property
     def is_user(self):
         return self.role == "user"
-
-
-class IP(models.Model):
-    

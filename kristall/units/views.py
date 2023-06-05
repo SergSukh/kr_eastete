@@ -1,25 +1,20 @@
 from datetime import datetime as dt
-from typing import Any
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.db.models.query import QuerySet
 from django.shortcuts import (get_object_or_404,
                               redirect, render)
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView
 from sorl.thumbnail import get_thumbnail
 from telegram import Bot
 
-from .forms import ImagesFormSet, MessageForm, UnitCreateForm, UnitForm
-from .models import Buildings, Citys, Image, Published, Streets, Unit
+from service.views import save_ip, save_unit_ip, save_user_ip
+from .forms import ImagesFormSet, UnitCreateForm, UnitForm
+from .models import Buildings, Citys, Image, Published, Special, Streets, Unit
 
 # BOT = Bot(token=settings.TELEGRAM_TOKEN)
-
-class IndexPageView(TemplateView):
-    template_name = 'units/index.html'
-
 
 def pages(request, unit_list):
     units_in_page = settings.UNITS_IN_PAGE
@@ -28,23 +23,39 @@ def pages(request, unit_list):
     return paginator.get_page(page_number)
 
 
-def units_list_show(request, objs_list, title):
-    if not request.user.is_staff:
-        objs_list = objs_list.filter(published__answer=True)
-    for unit in objs_list:
-        if unit.main_image():
-            unit.img = get_thumbnail(
-                unit.main_image(),
+def get_image(self):
+    if self.main_image():
+            self.img = get_thumbnail(
+                self.main_image(),
                 "600x400",
                 crop='top',
                 upscale=True,
                 quality=99
             )
+    return self.img
+
+def units_list_show(request, objs_list, title):
+    if not request.user.is_staff:
+        objs_list = objs_list.filter(published__answer=True)
+    for unit in objs_list:
+        unit.img = get_image(unit)
     return render(
         request,
         'units/units_list.html',
         {'page_obj': pages(request, objs_list), 'title': title}
     )
+
+
+def index(request):
+    save_ip(request)
+    save_user_ip(request)
+    object_list = Unit.objects.filter(
+        published__answer=True,
+        special__answer=True
+    )
+    for unit in object_list:
+        unit.img = get_image(unit)
+    return render(request, 'units/index.html', {'object_list': object_list[:2]})
 
 
 def units_list(request):
@@ -99,6 +110,8 @@ def search_units(request):
 
 def unit_detail(request, unit_id):
     unit = get_object_or_404(Unit, id=unit_id)
+    save_unit_ip(request, unit)
+    unit.count_vizitors = unit.visits.count()
     unit.imgs = []
     for img in unit.get_images():
         unit.imgs.append(
@@ -134,6 +147,21 @@ def unit_publicate(request, unit_id):
         pub.delete()
     else:
         pub = Published()
+        pub.unit=unit
+        pub.pub_date=dt.now()
+        pub.answer = True
+        pub.save()
+    return redirect('units:unit_detail', unit_id)
+
+
+@login_required
+def unit_special(request, unit_id):
+    unit = get_object_or_404(Unit, id=unit_id)
+    if unit.is_special():
+        pub = get_object_or_404(Special, unit=unit)
+        pub.delete()
+    else:
+        pub = Special()
         pub.unit=unit
         pub.pub_date=dt.now()
         pub.answer = True
@@ -199,19 +227,4 @@ def unit_edit(request, unit_id):
             return render(request, 'units/unit_create.html', context)
         unit = form.save()
         save_images(unit, images)
-    return redirect('units:units_list')
-
-
-def msg_create(request):
-    email = request.GET.get('email')
-    contact = (f', E-mail: {email}' if email else '.') 
-    #BOT.send_message(
-    #    chat_id=settings.TELEGRAM_CHAT,
-    #    text=f'{request.GET.get("name")}, оставил на сайте сообщение:')
-    #BOT.send_message(
-    #    chat_id=settings.TELEGRAM_CHAT,
-    #    text=f'{request.GET.get("text")}')
-    #BOT.send_message(
-    #    chat_id=settings.TELEGRAM_CHAT,
-    #    text=f'Контактная информация тел: {request.GET.get("phone")}{contact}')
     return redirect('units:units_list')

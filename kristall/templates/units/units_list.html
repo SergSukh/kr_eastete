@@ -16,29 +16,7 @@
         {% endif %}
         <ul class="main-content-units">
             {% for unit in page_obj %}
-                <li class="main-content-unit-item" style="background-image: url({{unit.img.url}});">
-                    <a class="main-unit-button" href="{% url 'units:unit_detail' unit.id %}">
-                        <ul class="main-content-unit">
-                            <li class="unit-head-description">
-                                <h3 class="main-content-unit-rem"><strong>{{ unit }}м<sup>2</sup></strong></h3>
-                                <div class="unit-adress"><strong>Адрес:</strong></div>
-                                <div class="unit-adress-value" style="z-index: +10">
-                                    {{unit.adress}}
-                                </div>
-                                <div class="unit-short-description">{{unit.get_short_description}}</div>
-                                <hr>
-                                <p class="unit_details_link">Подробнее...</p>
-                            </li>
-                            <li class="unit-head-price">
-                                <div class="unit-price"><b>Цена:</b></div>
-                                <div class="unit-price-num"> {{unit.unit_price}} руб.</div>
-                                <div class="price-starrange">
-                                    <div class="main-content-unit-price"> <strong>{{ unit.price_per_metr }}</strong> руб/м<sup>2</sup></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </a>
-                </li>
+                {% include 'units/includes/unit.html' %}
             {% endfor%}
         </ul>
     </div>

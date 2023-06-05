@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
-from users.validators import PhoneValidator
 
 User = get_user_model()
 
@@ -69,7 +68,7 @@ class Unit(models.Model):
     )
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['-pk']
 
     def __str__(self) -> str:
         if str(self.name)[-1] not in ['.', ',', '!', ';', ':']:
@@ -82,6 +81,11 @@ class Unit(models.Model):
     def is_published(self) -> bool:
         if len(self.published.all()) > 0:
             return self.published.all()[0].pub_date
+        return False
+
+    def is_special(self) -> bool:
+        if len(self.special.all()) > 0:
+            return self.special.all()[0].pub_date
         return False
 
     def main_image(self):
@@ -144,15 +148,24 @@ class Published(models.Model):
         return False
 
 
-class Message(models.Model):
-    message = models.TextField('Сообщение')
-    name = models.CharField('ФИО', max_length=100)
-    email = models.EmailField('E-mail', max_length=254, blank=True, null=True)
-    phone = models.PositiveBigIntegerField(
-        'Phone',
-        validators=[PhoneValidator()]
+class Special(models.Model):
+    unit = models.ForeignKey(
+        Unit,
+        on_delete=models.CASCADE,
+        related_name='special'
     )
-    date = models.DateField('Дата', auto_created=True, auto_now_add=True)
+    pub_date = models.DateTimeField(
+        'Время размещения',
+        auto_created=True)
+    answer = models.BooleanField(
+        default=True
+    )
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-pub_date']
+        verbose_name = 'Специальное предложение'
+
+    def __str__(self) -> str:
+        if self.pub_date:
+            return str('True')
+        return False

@@ -11,19 +11,28 @@
       <p class="header-adress">{{ unit.adress }}</p>
       <hr>
       {% if request.user.is_staff %}
-      <div class="staff-menu">
-        <a class="menu-second-item" href="{% url 'units:unit_publicate' unit.id %}">
-        {% if unit.is_published %}
-        <str style="font-size: 14px;">  от: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации.. </str>
-        {% else %}
-          Опубликовать..
-        {% endif %}
-        </a>
+        <div class="staff-menu">
+          <p class="info">Просмотров: {{unit.count_vizitors}}</p>
+          <a class="menu-second-item" href="{% url 'units:unit_publicate' unit.id %}">
+            {% if unit.is_published %}
+              <str style="font-size: 14px;">  от: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации.. </str>
+            {% else %}
+              Опубликовать..
+            {% endif %}
+          </a>
+          <a class="menu-second-item" href="{% url 'units:unit_special' unit.id %}">
+            {% if unit.is_special %}
+              <str style="font-size: 14px;">Снять предложение</str>
+            {% else %}
+              Спец. предложение
+            {% endif %}
+          </a>
+          {% if request.user.is_staff or request.user == unit.author %}
+            <a class="menu-second-item" href="{% url 'units:unit_edit' unit.id %}"> Редактировать объект</a>
+          {% endif %}
+        </div><hr>
       {% endif %}
-      {% if request.user.is_staff or request.user == unit.author %}
-        <a class="menu-second-item" href="{% url 'units:unit_edit' unit.id %}"> Редактировать объект</a>
-      </div><hr>
-      {% endif %}
+      
       <div class="container unit-details">
         <aside class="unit-images">
           {% include 'units/includes/images_slider.html' %}
