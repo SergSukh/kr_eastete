@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import (index, search_units, unit_create,
-                    unit_detail, unit_edit, unit_publicate, unit_special,
-                    units_list, units_rent, units_sale)
+from .views import (index, search_units, unit_create, unit_detail, unit_edit,
+                    unit_publicate, unit_special, units_list, units_rent,
+                    units_sale)
+
 app_name = 'units'
 
 urlpatterns = [
