@@ -1,7 +1,8 @@
 # kr_eastete
 ![kr_eastate-app-deploy](https://github.com/SergSukh/kr_eastete/actions/workflows/main.yml/badge.svg)
+
 сайт агенства недвижимости
-CI/CD on YndexCloud
+CI/CD on YandexCloud
 
 сайт доступен по адресу: www.kristall-an.ru
 
@@ -11,4 +12,4 @@ CI/CD on YndexCloud
 ### доступен запуск в контейнерах Докер >
 $ docker-compose up -d # в директории проекта
 
-## Технологии: Python3.11, Django4.2, Telegram, CI/CD, YaMAPS3.0, HTML5, CSS (адаптивная верстка), JS
+### Технологии: Python3.11, Django4.2, Telegram, CI/CD, YaMAPS3.0, HTML5, CSS (адаптивная верстка), JS
