@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from ..units.models import Unit
-from ..users.validators import PhoneValidator
+from units.models import Unit
+from users.validators import PhoneValidator
 
 User = get_user_model()
 
