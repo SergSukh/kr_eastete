@@ -15,7 +15,10 @@ def get_client_ip(request):
 
 
 def save_ip(request):
-    return Ip.objects.get_or_create(ip=get_client_ip(request))[0]
+    ip = get_client_ip(request)
+    if not Ip.objects.filter(ip=ip).exists():
+        Ip.objects.create(ip=ip)
+    return Ip.objects.get(ip=ip)
 
 
 def msg_create(request):
