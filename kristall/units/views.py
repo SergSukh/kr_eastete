@@ -6,15 +6,12 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import (get_object_or_404,
                               redirect, render)
-from django.views.generic import ListView
 from sorl.thumbnail import get_thumbnail
 from telegram import Bot
 
 from service.views import save_ip, save_unit_ip, save_user_ip
-from .forms import ImagesFormSet, UnitCreateForm, UnitForm
+from .forms import ImagesFormSet, UnitCreateForm, UnitEditForm
 from .models import Buildings, Citys, Image, Published, Special, Streets, Unit
-
-# BOT = Bot(token=settings.TELEGRAM_TOKEN)
 
 def pages(request, unit_list):
     units_in_page = settings.UNITS_IN_PAGE
@@ -25,14 +22,14 @@ def pages(request, unit_list):
 
 def get_image(self):
     if self.main_image():
-            self.img = get_thumbnail(
-                self.main_image(),
-                "600x400",
-                crop='top',
-                upscale=True,
-                quality=99
-            )
-    return self.img
+        return get_thumbnail(
+            self.main_image(),
+            "600x400",
+            crop='top',
+            upscale=True,
+            quality=99
+        )
+    return None
 
 def units_list_show(request, objs_list, title):
     if not request.user.is_staff:
@@ -135,8 +132,7 @@ def save_images(unit, images):
     for i_form in images.cleaned_data:
         if i_form and not i_form['DELETE']:
             image = i_form['image']
-            photo = Image(unit=unit, image=image)
-            photo.save()
+            Image.objects.create(unit=unit, image=image)
 
 
 @login_required
@@ -173,18 +169,18 @@ def unit_special(request, unit_id):
 def unit_create(request, unit=None):
     form = UnitCreateForm(
         request.POST or None,
+        request.FILES or None,
         instance=unit
     )
-    images = ImagesFormSet(
-        request.POST or None,
-        request.FILES or None,
-        queryset=Image.objects.filter(unit=unit)
+    images = (
+        request.FILES.getlist('images') or None
     )
-    if not form.is_valid() or not images.is_valid():
+    if not form.is_valid():
+        print(form)
         context = {
             'form': form,
             'images': images,
-            'is_edit': True if unit else False
+            'is_edit': False
         }
         return render(request, 'units/unit_create.html', context)
     city = Citys.objects.get_or_create(city=form['c_field'].value())
@@ -193,15 +189,16 @@ def unit_create(request, unit=None):
         building=form['b_field'].value(),
         block=form['bl_field'].value(),
         floors=(
-            form['f_field'].value() if type(form['f_field']) == int else None)
-    )
+            form['f_field'].value() if type(form['f_field']) == int else None
+    ))
     unit = form.save(commit=False)
     unit.author = request.user
     unit.city = city[0]
     unit.street = street[0]
     unit.build = build[0]
     unit.save()
-    save_images(unit, images)
+    for i_form in images:
+        Image.objects.create(unit=unit, image=i_form)
     return redirect('units:units_list')
 
 
@@ -209,7 +206,7 @@ def unit_create(request, unit=None):
 def unit_edit(request, unit_id):
     unit = get_object_or_404(Unit, id=unit_id)
     if request.user.is_staff or unit.author == request.user:
-        form = UnitForm(
+        form = UnitEditForm(
             request.POST or None,
             instance=unit
         )
@@ -222,7 +219,7 @@ def unit_edit(request, unit_id):
             context = {
                 'form': form,
                 'images': images,
-                'is_edit': True if unit else False
+                'is_edit': True
             }
             return render(request, 'units/unit_create.html', context)
         unit = form.save()

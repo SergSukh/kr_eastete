@@ -49,6 +49,7 @@
                   </tbody>
                 </table>
               </li>
+              {% if edit %}
               <li class="right">
                 <fieldset class="images-form">
                   {{ images.management_form }}
@@ -60,6 +61,7 @@
                   <button id="add-a-form" type="button" data-formset-add-form>Добавить изображение</button>  
                 </fieldset>
               </li>
+              {% endif %}
             </ul>
         </fieldset>
       </form>

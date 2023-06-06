@@ -19,15 +19,7 @@ class ElementInLineFormSet(BaseInlineFormSet):
             )
 
 
-class ImageForm(forms.ModelForm):
-    image = forms.ImageField(label='Фото')
-
-    class Meta:
-        model = Image
-        fields = ['image']
-
-
-class UnitForm(forms.ModelForm):
+class UnitEditForm(forms.ModelForm):
     class Meta:
         model = Unit
         fields = [
@@ -43,7 +35,7 @@ class UnitForm(forms.ModelForm):
         ]
 
 
-class UnitCreateForm(forms.ModelForm):
+class UnitBaseCreateForm(forms.ModelForm):
     c_field = forms.CharField(help_text='Введите город', label='Город')
     s_field = forms.CharField(
         max_length=200, help_text='Введите название улицы', label='Улица')
@@ -86,10 +78,27 @@ class UnitCreateForm(forms.ModelForm):
         ]
 
 
+class UnitCreateForm(UnitBaseCreateForm):
+    images = forms.FileField(
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        label='Фото')
+
+    class Meta(UnitBaseCreateForm.Meta):
+        fields = UnitBaseCreateForm.Meta.fields + ['images']
+
+
+class ImageForm(forms.ModelForm):
+    image = forms.ImageField(label='Фото')
+
+    class Meta:
+        model = Image
+        fields = ['image']
+
+
 ImagesFormSet = modelformset_factory(
     Image,
     form=ImageForm,
     max_num=20,
     can_delete=True,
-    extra=1
+    extra=0
 )

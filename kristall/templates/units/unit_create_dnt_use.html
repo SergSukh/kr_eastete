@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block title %} 
+    {{ unit }}
+  {% endblock title %}
+
+  {% block content %}
+    <div class="container section-hero__container">
+      <h1 class="header-content">
+        {% if is_edit %}
+          Редактируем объект: {{ unit }}
+        {% else %}
+          Создание объекта:
+        {% endif %}
+      </h1>
+      <form method="post" href="{% url 'units:unit_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">
+            {% if is_edit %}
+              Сохранить
+            {% else %}
+              Добавить
+            {% endif %}
+          </button>
+        </div>
+        <fieldset class="unit_create">
+          <section class="unit-create">
+            <h5 class="unit-head title" style="display: None">Создание объекта</h5>
+            <ul class="create-form">
+              <li class="left">
+                <table class="table-unit">
+                  <thead>
+                    <tr>
+                      <th score="col-3"></th>
+                      <th score="col-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ul>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Объект:</th>
+                          <th class="unit-create-field">
+                            <input type="text" name="name" id="id_name" placeholder="Название, тип объекта*" required>
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Площадь, м<sup>2</sup>:</th>
+                          <th class="unit-create-field">
+                            <input type="number" name="square" id="id_square" placeholder="Площадь ...*" required>
+                          </th>
+                        </tr>
+                      </li>
+                      <tr class="unit-detail-item">
+                        <th class="unit-create-head">Тип предложения:</th>
+                        <th class="unit-create-field">
+                          <select name="deal" id="id_deal" placeholder="Выберите тип сделки">
+                            <option value="Продажа" selected>Продажа</option>
+                            <option value="Аренда">Аренда</option>
+                          </select>
+                        </th>
+                      </tr>
+                    </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Описание:</th>
+                          <th class="unit-create-field">
+                            <input type="textarea" name="description" id="id_description" placeholder="Описание объекта ...*" required>
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Город:</th>
+                          <th class="unit-create-field">
+                            <input type="text" name="c_field" id="id_c_field" placeholder="Город ...*" required>
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Улица:</th>
+                          <th class="unit-create-field">
+                            <input type="text" name="s_field" id="id_s_field" placeholder="Улица ...*" required>
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Дом:</th>
+                          <th class="unit-create-field">
+                            <input type="number" name="b_field" id="id_b_field" placeholder="Дом ...*" required>
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Корпус:</th>
+                          <th class="unit-create-field">
+                            <input type="text" name="bl_field" id="id_bl_field" placeholder="Корпус ...*">
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Этажей:</th>
+                          <th class="unit-create-field">
+                            <input type="text" name="f_field" id="id_f_field" placeholder="Этажей ...*">
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Этаж:</th>
+                          <th class="unit-create-field">
+                            <input type="number" name="floor" id="id_floor" placeholder="Этаж ...*">
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Номер помещения:</th>
+                          <th class="unit-create-field">
+                            <input type="number" name="flat" id="id_flat" placeholder="номер помещения ...*">
+                          </th>
+                        </tr>
+                      </li>
+                      <li>
+                        <tr class="unit-detail-item">
+                          <th class="unit-create-head">Цена:</th>
+                          <th class="unit-create-field">
+                            <input type="number" name="price" id="id_price" placeholder="Цена ...*" required>
+                          </th>
+                        </tr>
+                      </li>
+                    </ul>
+                  </tbody>
+                </table>
+              </li>
+              <li class="right">
+                <input type="file" name="image" id="id_image" placeholder="Картинки...*" multiple="True" accept="image/*" required>
+              </li>
+            </ul>
+        </fieldset>
+      </form>
+
+<!-- Скрипт управления -->
+<script>
+  let imageForm = document.querySelectorAll(".unit-image")
+  let containerImages = document.querySelector(".images-form")
+  let addButtonImage = document.querySelector("#add-a-form")
+  let totalForms = document.getElementById("id_form-TOTAL_FORMS")
+  
+  let formNum = imageForm.length-1
+    addButtonImage.addEventListener('click', addForm)
+
+  function addForm(e){
+      e.preventDefault()
+
+      let newForm = imageForm[0].cloneNode(true)
+      let formRegex = RegExp(`form-(\\d){1}-`,'g')
+      
+      formNum++
+      newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+      containerImages.insertBefore(newForm, addButtonImage)
+
+      totalForms.setAttribute('value', `${formNum+1}`)
+  }
+
+</script>
+<style>
+  .unit-create-field {
+    padding-left: 10px;
+  }
+</style>
+{%endblock%}
