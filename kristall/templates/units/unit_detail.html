@@ -34,7 +34,10 @@
       {% endif %}
       
       <div class="container unit-details">
-        <aside class="unit-images">
+        <aside class="unit-images to_1350">
+          {% include 'units/includes/images_slider.html' %}
+        </aside>
+        <aside class="unit-images up_1350">
           {% include 'units/includes/images_slider.html' %}
         </aside>
         <article class="description-container">
@@ -104,6 +107,22 @@
     @media (max-width: 540px) {
       .menu-second-item {
         font-size: small;
+      }
+    }
+    @media (max-width: 1349px) {
+      .up_1350 {
+        display: none;
+      }
+      .up_1350 {
+        display: block;
+      }
+    }
+    @media (min-width: 1350px) {
+      .to_1350 {
+        display: none;
+      }
+      .up_1350 {
+        display: block;
       }
     }
   </style>
