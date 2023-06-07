@@ -100,3 +100,4 @@ if __name__ == '__main__':
     write_imgs()
     write_publish()
     write_special()
+    write_city()
