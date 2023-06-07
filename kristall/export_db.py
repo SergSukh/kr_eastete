@@ -14,6 +14,7 @@ os.chdir(path)
 
 def write_city():
     citys = Citys.objects.all()
+    print(citys)
     with open('city.csv', mode='a', encoding='utf-8') as csvfile:
         w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for city in citys:
