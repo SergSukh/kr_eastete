@@ -45,12 +45,12 @@ def write_unit():
             w_message.writerow(
                 [unit.pk,
                  unit.name,
-                 unit.author,
+                 unit.author.pk,
                  unit.square,
                  unit.description,
-                 unit.city,
-                 unit.street,
-                 unit.build,
+                 unit.city.pk,
+                 unit.street.pk,
+                 unit.build.pk,
                  unit.floor,
                  unit.flat,
                  unit.price,
@@ -64,7 +64,7 @@ def write_imgs():
         for img in images:
             w_message.writerow(
                 [img.pk,
-                 img.unit,
+                 img.unit.pk,
                  img.image])
 
 
@@ -75,7 +75,7 @@ def write_publish():
         for p in pub:
             w_message.writerow(
                 [p.pk,
-                 p.unit,
+                 p.unit.pk,
                  p.pub_date,
                  p.answer])
 
@@ -87,7 +87,7 @@ def write_special():
         for p in spec:
             w_message.writerow(
                 [p.pk,
-                 p.unit,
+                 p.unit.pk,
                  p.pub_date,
                  p.answer])
 
