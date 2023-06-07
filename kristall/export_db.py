@@ -14,7 +14,6 @@ os.chdir(path)
 
 def write_city():
     citys = Citys.objects.all()
-    print(citys)
     with open('city.csv', mode='a', encoding='utf-8') as csvfile:
         w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for city in citys:
@@ -29,7 +28,7 @@ def write_street():
             w_message.writerow([street.pk, street.street])
 
 
-def write_city():
+def write_building():
     buildings = Buildings.objects.all()
     with open('building.csv', mode='a', encoding='utf-8') as csvfile:
         w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
@@ -100,4 +99,4 @@ if __name__ == '__main__':
     write_imgs()
     write_publish()
     write_special()
-    write_city()
+    write_building()
