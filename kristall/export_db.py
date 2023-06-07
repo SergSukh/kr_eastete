@@ -6,11 +6,19 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kristall.settings')
 django.setup()
 
-from units.models import Buildings, Citys, Image, Published, Special, Streets, Unit
+from units.models import Buildings, Citys, Image, Published, Special, Streets, Unit, User
 
 path = './data/'
 os.mkdir(path)
 os.chdir(path)
+
+def write_user():
+    users = User.objects.all()
+    with open('user.csv', mode='a', encoding='utf-8') as csvfile:
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
+        for u in users:
+            w_message.writerow([u.pk, u.username, u.email, u.password])
+
 
 def write_city():
     citys = Citys.objects.all()
