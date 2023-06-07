@@ -15,7 +15,7 @@ os.chdir(path)
 def write_city():
     citys = Citys.objects.all()
     with open('city.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for city in citys:
             w_message.writerow([city.pk, city.city])
 
@@ -23,7 +23,7 @@ def write_city():
 def write_street():
     streets = Streets.objects.all()
     with open('street.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for street in streets:
             w_message.writerow([street.pk, street.street])
 
@@ -31,7 +31,7 @@ def write_street():
 def write_city():
     buildings = Buildings.objects.all()
     with open('building.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for building in buildings:
             w_message.writerow(
                 [building.pk, building.building, building.block, building.floors])
@@ -40,7 +40,7 @@ def write_city():
 def write_unit():
     units = Unit.objects.all()
     with open('units.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for unit in units:
             w_message.writerow(
                 [unit.pk,
@@ -60,7 +60,7 @@ def write_unit():
 def write_imgs():
     images = Image.objects.all()
     with open('img.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for img in images:
             w_message.writerow(
                 [img.pk,
@@ -71,7 +71,7 @@ def write_imgs():
 def write_publish():
     pub = Published.objects.all()
     with open('pub.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for p in pub:
             w_message.writerow(
                 [p.pk,
@@ -83,7 +83,7 @@ def write_publish():
 def write_special():
     spec = Special.objects.all()
     with open('spec.csv', mode='a', encoding='utf-8') as csvfile:
-        w_message = csv.writer(csvfile, delimiter=',', lineterminator='\r')
+        w_message = csv.writer(csvfile, delimiter=';', lineterminator='\r')
         for p in spec:
             w_message.writerow(
                 [p.pk,
