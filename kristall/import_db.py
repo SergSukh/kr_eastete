@@ -6,7 +6,9 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kristall.settings')
 django.setup()
 
-from units.models import Buildings, Citys, Image, Published, Special, Streets, Unit
+from units.models import (
+    Buildings, Citys, Image, Published, Special, Streets, Unit
+)
 
 path = '.././data/data_img/'
 os.chdir(path)
