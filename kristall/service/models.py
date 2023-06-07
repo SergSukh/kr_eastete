@@ -1,9 +1,13 @@
+from decimal import Decimal
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from units.models import Unit
 from users.validators import PhoneValidator
+from yandex_geocoder import Client
 
 User = get_user_model()
+client = Client(settings.YANDEX_API)
 
 
 class Ip(models.Model):
@@ -70,3 +74,11 @@ class UserIp(models.Model):
         related_name='user_visits',
         default=0
     )
+
+
+class UnitLocation(Unit):
+    longitude = models.CharField('Долгота', max_length=10)
+    latitude = models.CharField('Широта', max_length=10)
+
+    def __str__(self) -> str:
+        return f'{self.longitude}, {self.latitude}'

@@ -3,13 +3,14 @@ from datetime import datetime as dt
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.db.models import Q
 from django.shortcuts import (get_object_or_404,
                               redirect, render)
 from sorl.thumbnail import get_thumbnail
 from telegram import Bot
 
-from service.views import save_ip, save_unit_ip, save_user_ip
+from service.views import (
+    get_list_find_units, save_ip, save_unit_ip, save_user_ip
+)
 from .forms import ImagesFormSet, UnitCreateForm, UnitEditForm
 from .models import Buildings, Citys, Image, Published, Special, Streets, Unit
 
@@ -70,40 +71,9 @@ def units_sale(request):
     return units_list_show(request, objs, 'Продажа объектов')
 
 
-def get_search_min_param(param):
-    return (float(param) if param else 0)
-
-
-def get_search_max_param(param):
-    return (float(param) if param else 999999999)
-
-
 def search_units(request):
-    deal = request.GET.get('deal')
-    name = request.GET.get('q')
-    if request.user.is_staff:
-        public = None if request.GET.get('public') else True
-    else:
-        public = True
-    sq_min = get_search_min_param(request.GET.get('sq_min'))
-    sq_max = get_search_max_param(request.GET.get('sq_max'))
-    pr_min = get_search_min_param(request.GET.get('pr_min'))
-    pr_max = get_search_max_param(request.GET.get('pr_max'))
-    objs = Unit.objects.filter(
-        Q(deal__iregex=deal),
-        Q(name__iregex=name),
-        Q(published__answer=public),
-        Q(street__street__icontains=request.GET.get('street'))
-    )
-    obj_list = []
-    for obj in objs:
-        if (
-            obj.check_param(sq_min, obj.square, sq_max) and
-            obj.check_param(pr_min, obj.price, pr_max)
-        ):
-            obj_list.append(obj)
+    objs = get_list_find_units(request)
     return units_list_show(request, objs, 'Объекты по запросу')
-
 
 def unit_detail(request, unit_id):
     unit = get_object_or_404(Unit, id=unit_id)

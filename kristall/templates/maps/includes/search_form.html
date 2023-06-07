@@ -1,0 +1,69 @@
+<div class="easy_search">
+    <form action="{% url 'service:units_search'%}" method="get">
+        <ul>
+            <li class="easy_searh_field">
+                <div class="label_search">Тип сделки</div>
+                    <select name="deal">
+                        <option value="Аренда">Аренда</option>
+                        <option value="Продажа">Продажа</option>
+                    </select>
+                    {% if request.user.is_staff %}
+                        <p class="label_search_check">Не опубликованные</p><input type="checkbox" name="public">
+                    {% endif %}
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Тип помещения</div><input class="easy_search_input" name="q" type="text" placeholder="Быстрый поиск...">
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Улица:</div><input class="easy_search_input" name="street" type="text" placeholder="Введите улицу...">
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Площадь, м<sup>2</sup>:</div>
+                <input class="easy_search_input_min_value" name="sq_min" type="number" step="0.5" min="0" placeholder="От...">
+                <input class="easy_search_input_max_value" name="sq_max" type="number" step="0.5" min="0" max="999999999" placeholder="До...">
+            </li>
+            <li class="easy_searh_field">
+                <div class="label_search">Цена:</div>
+                <input class="easy_search_input_min_value" name="pr_min" type="number" step="0.01" min="0" placeholder="От...">
+                <input class="easy_search_input_max_value" name="pr_max" type="number" step="0.01" min="0" max="999999999" placeholder="До...">
+            </li>
+        </ul>
+        <button type="submit" class="btn btn-primary search_btn">Подобрать</button>
+    </form>
+</div>
+<style>
+    .easy_search {
+        width: 350px;
+        padding: 7px;
+        background-color: lightgrey;
+        border: 2px solid grey;
+        border-radius: 10px;
+    }
+    .easy_search_field {
+        display: flex;
+        flex-direction: row;
+    }
+    .easy_search_input {
+        width: 300px;
+    }
+    .easy_search_input_min_value,
+    .easy_search_input_max_value {
+        width: 150px;
+        margin: auto;
+    }
+    .label_search_check {
+        display: inline-block;
+    }
+    .search_btn {
+        margin-top: 5px;
+        padding: 5px;
+        border-radius: 8px;
+    }
+    @media (max-width: 450px) {
+        .easy_search_field,
+        .easy_search_input_min_value,
+        .easy_search_input_max_value {
+            flex-direction: column;
+        }
+    }
+</style>

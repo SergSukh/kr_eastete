@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} 
+    Фильтрация объектов на карте по различным признакам
+{% endblock title %}
+
+{% block content %}
+
+  {% include 'includes/search_form.html' %}
+<div id="map"></div>
+<div style="padding: 5px;">
+    <div>
+        Фильтр по цветам <br>
+        <input type='checkbox' id='red' checked=true>Красные</input><br>
+        <input type='checkbox' id='green' checked=true>Зеленые</input><br>
+        <input type='checkbox' id='yellow' checked=true>Желтые</input>
+    </div>
+    <div>
+        Фильтр по геометриям <br>
+        <input type='checkbox' id='point' checked=true>Точки</input><br>
+        <input type='checkbox' id='polygon' checked=true>Многоугольники</input><br>
+        <input type='checkbox' id='circle' checked=true>Круги</input>
+    </div>
+</div>
+<style>
+    body, html {
+        font-family: Arial;
+        font-size: 11pt;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    #map {
+        width: 1200px;
+        height: 600px;
+    }
+</style>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=09b5a2be-3bd4-4464-aea8-969f26a2ac28" type="text/javascript"></script>
+<script type="text/javascript" src="https://yandex.st/jquery/2.2.3/jquery.js"></script>
+<script src="{% static 'js/geoobjects_menu.js' %}" type="text/javascript"></script>
+
+{% endblock %}

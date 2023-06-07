@@ -177,8 +177,8 @@ LOGIN_REDIRECT_URL = 'units:index'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 UNITS_IN_PAGE = 12
-
-YANDEX_MAPS_API = os.getenv('YANDEX_MAPS', default='https://api-maps.yandex.ru/2.1/?apikey=<get-your-api-key>&lang=ru_RU&load=Geolink')
+YANDEX_API = os.getenv('YANDEX_MAPS', default="<get-your-api-key>")
+YANDEX_MAPS_API = f'https://api-maps.yandex.ru/2.1/?apikey={YANDEX_API}&lang=ru_RU&load=Geolink'
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT = '419728922'
