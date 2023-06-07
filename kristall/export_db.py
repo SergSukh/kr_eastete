@@ -8,7 +8,7 @@ django.setup()
 
 from units.models import Buildings, Citys, Image, Published, Special, Streets, Unit
 
-path = '.././data/'
+path = './data/'
 os.mkdir(path)
 os.chdir(path)
 
