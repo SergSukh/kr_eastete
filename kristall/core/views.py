@@ -15,3 +15,7 @@ def csrf_error(request, exections):
 
 def csrf_failure(request, reason=''):
     return render(request, 'core/403csrf.html')
+
+
+def get_contact(request):
+    return render(request, 'core/contact.html')

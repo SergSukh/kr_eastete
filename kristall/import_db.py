@@ -7,10 +7,9 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kristall.settings')
 django.setup()
 
 from units.models import (
-    Buildings, Citys, Image, Published, Special, Streets, Unit
+    Buildings, Citys, Image, Published, Special, Streets, Unit, User
 )
-
-path = '.././data/data_img/'
+path = '.././data/'
 os.chdir(path)
 
 def write_city():
@@ -73,14 +72,14 @@ def write_unit():
         units = (Unit(
             pk=_['pk'],
             name=_['name'],
-            author=_['author'],
+            author= User.objects.get(pk=_['author']),
             square=_['square'],
             description=_['description'],
-            city=_['city'],
-            street=_['street'],
-            build=_['build'],
-            floor=_['floor'],
-            flat=_['flat'],
+            city=Citys.objects.get(pk=_['city']),
+            street=Streets.objects.get(id=_['street']),
+            build=Buildings.objects.get(id=_['build']),
+            floor=(_['floor'] if _['floor'] else None),
+            flat=(_['flat'] if _['flat'] else None),
             price=_['price'],
             deal=_['deal']
         ) for _ in reader)
@@ -95,7 +94,7 @@ def write_imgs():
         reader = csv.DictReader(csvfile, fieldnames=['pk', 'unit', 'image'], delimiter=';')
         imgs = (Image(
             pk=_['pk'],
-            unit=_['unit'],
+            unit=Unit.objects.get(id=_['unit']),
             image=_['image']
         ) for _ in reader)
         Image.objects.bulk_create(imgs)
@@ -114,11 +113,11 @@ def write_publish():
         ])
         pub = (Published(
             pk=_['pk'],
-            unit=_['unit'],
+            unit=Unit.objects.get(id=_['unit']),
             pub_date=_['pub_date'],
             answer=_['answer']
          ) for _ in reader)
-        Image.objects.bulk_create(pub)
+        Published.objects.bulk_create(pub)
     csvfile.close()
 
 
@@ -133,7 +132,7 @@ def write_special():
             'answer'])
         sp = (Special(
             pk=_['pk'],
-            unit=_['unit'],
+            unit=Unit.objects.get(id=_['unit']),
             pub_date=_['pub_date'],
             answer=_['answer']
         ) for _ in reader)
