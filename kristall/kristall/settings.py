@@ -178,7 +178,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 UNITS_IN_PAGE = 12
 
-YANDEX_MAPS_API = os.getenv('YANDEX_MAPS', default='https://api-maps.yandex.ru/2.1/?apikey=<get-your-api-key>&lang=ru_RU&load=Geolink')
+YANDEX_MAPS = os.getenv('YANDEX_MAPS', default='<get-your-api-key>')
+YANDEX_MAPS_API = (f'https://api-maps.yandex.ru/2.1/?apikey={YANDEX_MAPS}&lang=ru_RU&load=Geolink')
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT = os.getenv('TELEGRAM_CHAT')
