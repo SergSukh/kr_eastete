@@ -49,7 +49,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kristall:latest
 
-  deploy:
+  # deploy:
   #  
   #  name: Deploy to web
   #  runs-on: ubuntu-latest
