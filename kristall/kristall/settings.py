@@ -93,7 +93,7 @@ CACHES = {
 }
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
-    'http://158.160.55.161',
+    'http://151.248.116.15',
     'http://kristall-an.ru',
     'http://www.kristall-an.ru',
     'https://www.kristall-an.ru'
