@@ -70,3 +70,27 @@ class UserIp(models.Model):
         related_name='user_visits',
         default=0
     )
+
+
+class Post(models.Model):
+    mark = models.SmallIntegerField(
+        'Оценка',
+        choices=((1, 1), (2, 2), (3, 3), (4, 4), (5, 5),),
+        default=5
+    )
+    text = models.TextField('Отзыв')
+    author = models.CharField('Имя', max_length=20, default='Гость')
+    pub_date = models.DateTimeField(
+        'Дата добавления',
+        auto_created=True,
+        auto_now=True
+    )
+    ip = models.ForeignKey(Ip, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-pub_date']
+
+    def stars(self):
+        full_stars = ['1' * self.mark]
+        empty_stars = ['0' * (5 - self.mark)]
+        return list(full_stars[0]) + list(empty_stars[0])

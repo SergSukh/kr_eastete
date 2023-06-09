@@ -15,7 +15,8 @@
             <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_rent' %}">Аренда</a></li>
             <li class="dropdown-item"><a class="deal-filter" href="{% url 'units:units_list' %}">Все объекты</a></li>
             <li class="dropdown-item"><a class="unit_create" href="{% url 'units:unit_create' %}">Разместить объект</a></li>
-            <li class="dropdown-item"><a href="{% url 'units:units_list' %}">Контакты:</a></li>
+            <li class="dropdown-item"><a href="{% url 'service:feedback' %}">Отзывы</a></li>
+            <li class="dropdown-item"><a href="{% url 'contact' %}">Контакты:</a></li>
             <li class="dropdown-item">
               {% if user.is_authenticated %}
                 <ul class="header__nav-list">
@@ -58,10 +59,10 @@
               <a class="header__nav-link" href="#">Новости</a>
             </li>
             <li class="header__nav-item">
-              <a class="header__nav-link" href="#">Отзывы</a>
+              <a class="header__nav-link" href="{% url 'service:feedback' %}">Отзывы</a>
             </li>
             <li class="header__nav-item">
-              <a class="header__nav-link" href="#">Контакты</a>
+              <a class="header__nav-link" href="{% url 'contact' %}">Контакты</a>
             </li>
             <li class="header__nav-item"> 
               {% if user.is_authenticated %}

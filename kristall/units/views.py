@@ -2,22 +2,15 @@ from datetime import datetime as dt
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import (get_object_or_404,
                               redirect, render)
 from sorl.thumbnail import get_thumbnail
 from telegram import Bot
 
-from service.views import save_ip, save_unit_ip, save_user_ip
+from service.views import pages, save_ip, save_unit_ip, save_user_ip
 from .forms import ImagesFormSet, UnitCreateForm, UnitEditForm
 from .models import Buildings, Citys, Image, Published, Special, Streets, Unit
-
-def pages(request, unit_list):
-    units_in_page = settings.UNITS_IN_PAGE
-    paginator = Paginator(unit_list, units_in_page)
-    page_number = request.GET.get('page')
-    return paginator.get_page(page_number)
 
 
 def get_image(self):

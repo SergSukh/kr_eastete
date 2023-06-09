@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+  {% block title %} 
+    Отзывы наших клиентов:
+  {% endblock title %}
+
+{% block content %}
+    <div class="container section-hero__container">
+        {% if page_obj.has_other_pages %}
+            {% include 'units/includes/paginator.html' %}
+        {% endif %}
+        <h1 class="header-content">Отзывы наших клиентов:</h1>
+        <hr>
+        {% if page_obj %}
+            <div>
+                <ul class="post-list">
+                    {% for post in page_obj%}
+                        <li class="post-item">
+                            {% include 'service/includes/post.html' %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <hr>
+        <div class="post-form">
+            {% include 'service/includes/form.html' %}
+        </div>
+    </div>
+<style>
+    .post-item {
+        display: block;
+    }
+    .post-list {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+{% endblock %}

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 
 
@@ -18,4 +19,8 @@ def csrf_failure(request, reason=''):
 
 
 def get_contact(request):
-    return render(request, 'core/contact.html')
+    return render(
+        request,
+        'core/contact.html',
+        {'YandexMapsAPI': settings.YANDEX_MAPS_API}
+    )

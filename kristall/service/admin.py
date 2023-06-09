@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Ip, UnitVisits, UserIp
+from .models import Ip, Post, UnitVisits, UserIp
 
 
 @admin.register(Ip)
@@ -16,3 +16,8 @@ class UserIpAdmin(admin.ModelAdmin):
 @admin.register(UnitVisits)
 class UnitVisitsAdmin(admin.ModelAdmin):
     list_display = ['unit', 'views']
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['mark', 'text', 'author', 'ip', 'pub_date']

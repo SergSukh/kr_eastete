@@ -1,0 +1,52 @@
+{% load static %}
+<div class="post-text">
+    <ul class="mark-star">
+        <p class="post-date">дата: {{ post.pub_date }}</p>
+        {% for star in post.stars %}
+            <li>
+                {% if star == '1' %}
+                    <img class="star" src="{% static 'img/stars/full_star.png' %}" alt="">
+                {% else %}
+                    <img class="star" src="{% static 'img/stars/empty_star.png' %}" alt="">
+                {%endif%}
+            </li>
+        {% endfor %}
+    </ul>
+    <hr style="color: white;">
+    <div class="post-author">{{post.author}}:</div>
+    <div class="post-description">{{post.text}}</div>
+</div>
+<style>
+    .mark-star {
+        flex: 1 1 40%;
+        display: flex;
+        flex-direction: row;
+       /*margin: auto;*/
+      }
+    .post-date {
+        margin: 0 10px;
+    }
+    .post-text {
+        float: right;
+        margin: 1%;
+        background: silver;
+        padding: 1em 1.5em;
+        border-radius: 1em;
+        line-height: 1.5em;
+        width: 80%;
+    }
+    .post-description {
+        display: block;
+        width: 100%;
+        padding: 2px;
+    }
+    @media (max-width: 500px) {
+        .mark-star {
+            font-size: xx-small;
+        }
+        .post-description {
+        font-size: small;
+        }
+    }
+
+</style>

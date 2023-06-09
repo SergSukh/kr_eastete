@@ -1,10 +1,20 @@
+from datetime import datetime as dt
 import telegram
 from django.conf import settings
-from django.shortcuts import redirect
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
 
-from .models import Ip, Message, UnitVisits, UserIp
+from .forms import PostForm
+from .models import Ip, Message, Post, UnitVisits, UserIp
 
 bot = telegram.Bot(token=settings.TELEGRAM_TOKEN)
+
+
+def pages(request, unit_list):
+    units_in_page = settings.UNITS_IN_PAGE
+    paginator = Paginator(unit_list, units_in_page)
+    page_number = request.GET.get('page')
+    return paginator.get_page(page_number)
 
 
 def get_client_ip(request):
@@ -52,3 +62,21 @@ def save_unit_ip(request, unit):
     ip = save_ip(request)
     if not unit.visits.filter(views=ip).exists():
         UnitVisits.objects.create(unit=unit, views=ip)
+
+
+def feedback(request):
+    post_objects = Post.objects.all()
+    form = PostForm(request.POST or None)
+    print(form)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = (form.cleaned_data['author'] if form['author'] else 'Гость')
+        post.pub_date = dt.now()
+        post.ip = save_ip(request)
+        post.save()
+        return render(request, 'units/index.html')
+    context = {
+        'page_obj': pages(request, post_objects),
+        'form': form
+    }
+    return render(request, 'service/feedback.html', context)

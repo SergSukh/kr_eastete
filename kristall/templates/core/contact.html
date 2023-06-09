@@ -1,5 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Custom 500{% endblock %}
+{% block title %}Контакты{% endblock %}
 {% block content %}
-    <h1>Ошибка сервера 500</h1>
+    <div class="container contact-container">
+        <h1 class="contact-header">ООО Агентство недвижимости "КРИСТАЛЛ"</h1>
+        <h5>Фактический и почтовый адрес:</h5>
+        <div class="adress"> 443058, Самарская область, 
+            <span class="ymaps-geolink" data-description='ООО АH "КРИСТАЛЛ", офис 301а.'>г. Самара, ул. XXII Партсъезда, дом 41, офис 301а.</span>
+        </div>
+        <div class="block-contact">
+            <a class="contact contact-phone" href="tel:+79608266727">Тел.: +7 960 826-67-27</a>
+            <a class="contact contact-phone" href="email:vk-office@mail.ru">E-mail: vk-office@mail.ru</a>
+            <a class="contact contact-phone" href="http://www.kristall-an.ru">Web: www.kristall-an.ru</a>
+        </div>
+    </div>
+    <style>
+        .contact-container {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        .block-contact {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            width: 100%;
+        }
+        .contact-header {
+            font-size: 24px;
+            width: 100%;
+        }
+    </style>
+    <script src={{YandexMapsAPI}} type="text/javascript"></script>
 {% endblock %}

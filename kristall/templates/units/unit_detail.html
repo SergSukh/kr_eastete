@@ -15,7 +15,7 @@
           <p class="info">Просмотров: {{unit.count_vizitors}}</p>
           <a class="menu-second-item" href="{% url 'units:unit_publicate' unit.id %}">
             {% if unit.is_published %}
-              <str style="font-size: 14px;">  от: {{unit.is_published|date:"SHORT_DATE_FORMAT"}}. Снять с публикации.. </str>
+              <str style="font-size: 14px;">Снять с публикации.. </str>
             {% else %}
               Опубликовать..
             {% endif %}
@@ -24,17 +24,17 @@
             {% if unit.is_special %}
               <str style="font-size: 14px;">Снять предложение</str>
             {% else %}
-              Спец. предложение
+              Спецпредложение
             {% endif %}
           </a>
           {% if request.user.is_staff or request.user == unit.author %}
-            <a class="menu-second-item" href="{% url 'units:unit_edit' unit.id %}"> Редактировать объект</a>
+            <a class="menu-second-item" href="{% url 'units:unit_edit' unit.id %}">Редактировать</a>
           {% endif %}
         </div><hr>
       {% endif %}
       
       <div class="container unit-details">
-        <aside class="unit-images to_1350">
+        <aside class="unit-images to_1350" style="max-width: 100%;">
           {% include 'units/includes/images_slider.html' %}
         </aside>
 
@@ -87,8 +87,7 @@
         </ul>
       </div>
   </div>
-  <script src={{YandexMapsAPI}}
-  type="text/javascript"></script>
+  <script src={{YandexMapsAPI}} type="text/javascript"></script>
   <style>
     @media (max-width: 1700px) {
       .adr_detail {
@@ -104,9 +103,27 @@
     }
     @media (max-width: 540px) {
       .menu-second-item {
-        font-size: small;
+        font-size: smaller;
       }
+      
     }
+    @media (max-width: 449px) {
+    .description {
+      margin-left: 5px;
+      font-size: xx-small;
+      text-align: left;
+    }
+  }
+    @media (max-width: 501px) {
+    .staff-menu {
+      flex-direction: column;
+    }
+    .menu-second-item {
+      margin-top:2px;
+      padding: 3px;
+      width: 100%;
+      height: 100%;
+    }
+  }
   </style>
-
 {%endblock%}
