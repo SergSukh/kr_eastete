@@ -1,4 +1,5 @@
 from datetime import datetime as dt
+
 import telegram
 from django.conf import settings
 from django.core.paginator import Paginator
@@ -70,7 +71,9 @@ def feedback(request):
     print(form)
     if form.is_valid():
         post = form.save(commit=False)
-        post.author = (form.cleaned_data['author'] if form['author'] else 'Гость')
+        post.author = (
+            form.cleaned_data['author'] if form['author'] else 'Гость'
+        )
         post.pub_date = dt.now()
         post.ip = save_ip(request)
         post.save()
