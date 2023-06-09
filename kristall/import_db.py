@@ -9,7 +9,7 @@ django.setup()
 from units.models import (
     Buildings, Citys, Image, Published, Special, Streets, Unit, User
 )
-path = '.././data/'
+path = './data/'
 os.chdir(path)
 
 def write_city():
