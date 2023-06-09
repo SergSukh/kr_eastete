@@ -79,7 +79,12 @@ class Post(models.Model):
         default=5
     )
     text = models.TextField('Отзыв')
-    author = models.CharField('Имя', max_length=20, default='Гость')
+    author = models.CharField(
+        'Имя',
+        max_length=20,
+        default='Гость',
+        blank=True
+    )
     pub_date = models.DateTimeField(
         'Дата добавления',
         auto_created=True,
