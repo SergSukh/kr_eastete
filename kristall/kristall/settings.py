@@ -96,7 +96,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://151.248.116.15',
     'http://kristall-an.ru',
     'http://www.kristall-an.ru',
-    'https://www.kristall-an.ru'
+    'https://www.kristall-an.ru',
+    'https://kristall-an.ru'
 ]
 CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
 
