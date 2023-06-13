@@ -57,7 +57,11 @@ class UnitVisits(models.Model):
         related_name='unit_views',
         default=0
     )
-    dt = models.DateTimeField('Date&Time', auto_created=True, auto_now_add=True)
+    dt = models.DateTimeField(
+        'Date&Time',
+        auto_created=True,
+        auto_now_add=True
+    )
 
 
 class UserIp(models.Model):
