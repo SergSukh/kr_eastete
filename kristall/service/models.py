@@ -9,6 +9,7 @@ User = get_user_model()
 class Ip(models.Model):
     """Таблица всех IP адресов зашедших на сайт"""
     ip = models.CharField(max_length=100)
+    description = models.TextField('Описание', blank=True, null=True)
 
     def __str__(self) -> str:
         return f'{self.ip}'
@@ -56,6 +57,7 @@ class UnitVisits(models.Model):
         related_name='unit_views',
         default=0
     )
+    dt = models.DateTimeField('Date&Time', auto_created=True, auto_now_add=True)
 
 
 class UserIp(models.Model):

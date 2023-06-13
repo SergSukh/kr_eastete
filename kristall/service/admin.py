@@ -5,7 +5,7 @@ from .models import Ip, Post, UnitVisits, UserIp
 
 @admin.register(Ip)
 class IpAdmin(admin.ModelAdmin):
-    list_display = ['ip']
+    list_display = ['ip', 'description']
 
 
 @admin.register(UserIp)
@@ -15,7 +15,7 @@ class UserIpAdmin(admin.ModelAdmin):
 
 @admin.register(UnitVisits)
 class UnitVisitsAdmin(admin.ModelAdmin):
-    list_display = ['unit', 'views']
+    list_display = ['unit', 'views', 'dt']
 
 
 @admin.register(Post)

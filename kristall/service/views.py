@@ -20,6 +20,7 @@ def pages(request, unit_list):
 
 def get_client_ip(request):
     x_frwrdd = request.META.get('HTTP_X_FORWARDED_FOR')
+    print(request.META)
     if x_frwrdd:
         return x_frwrdd.split(',')[0]
     return (
@@ -30,7 +31,7 @@ def get_client_ip(request):
 def save_ip(request):
     ip = get_client_ip(request)
     if not Ip.objects.filter(ip=ip).exists():
-        Ip.objects.create(ip=ip)
+        Ip.objects.create(ip=ip, description=str(request.META))
     return Ip.objects.get(ip=ip)
 
 
@@ -68,7 +69,6 @@ def save_unit_ip(request, unit):
 def feedback(request):
     post_objects = Post.objects.all()
     form = PostForm(request.POST or None)
-    print(form)
     if form.is_valid():
         post = form.save(commit=False)
         post.author = (
