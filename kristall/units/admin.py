@@ -29,7 +29,7 @@ class StreetAdmin(admin.ModelAdmin):
 
 @admin.register(Buildings)
 class BuildAdmin(admin.ModelAdmin):
-    list_display = ['building', 'block', 'floors']
+    list_display = ['id', 'building', 'block', 'floors']
 
 
 @admin.register(Image)

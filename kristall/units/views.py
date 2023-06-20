@@ -169,7 +169,6 @@ def unit_create(request, unit=None):
         request.FILES.getlist('images') or None
     )
     if not form.is_valid():
-        print(form)
         context = {
             'form': form,
             'images': images,
