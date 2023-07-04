@@ -88,7 +88,7 @@ class UnitCreateForm(UnitBaseCreateForm):
 
 
 class ImageForm(forms.ModelForm):
-    image = forms.ImageField(label='Фото')
+    image = forms.ImageField(label='Фото', show_hidden_initial=True)
 
     class Meta:
         model = Image

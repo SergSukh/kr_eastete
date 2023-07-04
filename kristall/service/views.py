@@ -20,7 +20,6 @@ def pages(request, unit_list):
 
 def get_client_ip(request):
     x_frwrdd = request.META.get('HTTP_X_FORWARDED_FOR')
-    print(request.META)
     if x_frwrdd:
         return x_frwrdd.split(',')[0]
     return (

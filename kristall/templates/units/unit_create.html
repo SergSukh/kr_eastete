@@ -54,9 +54,11 @@
                 <fieldset class="images-form">
                   {{ images.management_form }}
                   {% for i_form in images %}
-                    <div class="unit-image">
+                    <div class="unit-image image_form">
                       {{ i_form }}
+                      <div class="image_2_form" style="background-image: url({{ i_form.initial.image.url }})"></div>
                     </div>
+                    <hr>
                   {% endfor %}
                   <button id="add-a-form" type="button" data-formset-add-form>Добавить изображение</button>  
                 </fieldset>
@@ -66,4 +68,16 @@
         </fieldset>
       </form>
       <script src="{% static 'js/add_field_img.js' %}"></script>
+  <style>
+    .image_form {
+      height: 150px;
+    }
+    .image_2_form {
+      margin-top: 1em;
+      height: 100px;
+      max-widht: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  </style>
 {%endblock%}
