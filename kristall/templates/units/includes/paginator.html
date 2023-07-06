@@ -1,9 +1,11 @@
 <nav aria-label="Page navigation" class="my-5">
     <ul class="pagination">
     {% if page_obj.has_previous %}
-        <li class="page-item"><a class="page-link  user-decorated" href="?page=1">Первая</a></li>
         <li class="page-item">
-        <a class="page-link  user-decorated" href="?page={{ page_obj.previous_page_number }}">
+            <a class="page-link  user-decorated" href="?page=1{% if request.GET %}{{req}}{% endif %}">Первая</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link  user-decorated" href="?page={{ page_obj.previous_page_number }}{% if request.GET %}{{req}}{% endif %}">
             Предыдущая
         </a>
         </li>
@@ -15,18 +17,18 @@
             </li>
         {% else %}
             <li class="page-item">
-            <a class="page-link  user-decorated" href="?page={{ i }}">{{ i }}</a>
+            <a class="page-link  user-decorated" href="?page={{ i }}{% if request.GET %}{{req}}{% endif %}">{{ i }}</a>
             </li>
         {% endif %}
     {% endfor %}
     {% if page_obj.has_next %}
         <li class="page-item">
-        <a class="page-link  user-decorated" href="?page={{ page_obj.next_page_number }}">
+        <a class="page-link  user-decorated" href="?page={{ page_obj.next_page_number }}{% if request.GET %}{{req}}{% endif %}">
             Следующая
         </a>
         </li>
         <li class="page-item">
-        <a class="page-link  user-decorated" href="?page={{ page_obj.paginator.num_pages }}">
+        <a class="page-link  user-decorated" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET %}{{req}}{% endif %}">
             Последняя
         </a>
         </li>

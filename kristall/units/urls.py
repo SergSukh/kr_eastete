@@ -1,5 +1,6 @@
 from django.urls import path
 
+from .utils import get_objs
 from .views import (index, search_units, unit_create, unit_detail, unit_edit,
                     unit_publicate, unit_special, units_list, units_rent,
                     units_sale)
@@ -24,5 +25,10 @@ urlpatterns = [
         name='unit_special'
     ),
     path('create/', unit_create, name='unit_create'),
+    path(
+        'download_objs_list/',
+        get_objs,
+        name='get_objs'
+    ),
     path('unit/<int:unit_id>/edit/', unit_edit, name='unit_edit'),
 ]

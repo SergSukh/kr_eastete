@@ -14,7 +14,7 @@ bot = telegram.Bot(token=settings.TELEGRAM_TOKEN)
 def pages(request, unit_list):
     units_in_page = settings.UNITS_IN_PAGE
     paginator = Paginator(unit_list, units_in_page)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
 
 

@@ -15,7 +15,7 @@ deals = [
 
 class Citys(models.Model):
     """Model City for adress"""
-    city = models.CharField('Город', max_length=25, default='Самара')
+    city = models.CharField('Город', max_length=50, default='Самара')
 
     def __str__(self) -> str:
         return str(self.city)
@@ -23,7 +23,7 @@ class Citys(models.Model):
 
 class Streets(models.Model):
     """Street objects for adress"""
-    street = models.CharField('Улица', max_length=50)
+    street = models.CharField('Улица', max_length=75)
 
     def __str__(self) -> str:
         return str(self.street)

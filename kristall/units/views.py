@@ -6,7 +6,6 @@ from django.db.models import Q
 from django.shortcuts import (get_object_or_404,
                               redirect, render)
 from sorl.thumbnail import get_thumbnail
-from telegram import Bot
 
 from service.views import pages, save_ip, save_unit_ip, save_user_ip
 from .forms import ImagesFormSet, UnitCreateForm, UnitEditForm
@@ -29,10 +28,14 @@ def units_list_show(request, objs_list, title):
         objs_list = objs_list.filter(published__answer=True)
     for unit in objs_list:
         unit.img = get_image(unit)
+    req = ''
+    for q in request.GET:
+        if q != 'page':
+            req += f'&{q}={request.GET[q]}'
     return render(
         request,
         'units/units_list.html',
-        {'page_obj': pages(request, objs_list), 'title': title}
+        {'page_obj': pages(request, objs_list), 'req': req, 'title': title}
     )
 
 
