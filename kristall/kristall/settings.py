@@ -64,26 +64,26 @@ WSGI_APPLICATION = 'kristall.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+#if DEBUG:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.sqlite3',
+#            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        }
+#    }
+#    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+#else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': 5432
     }
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('POSTGRES_USER'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-            'HOST': 'db',
-            'PORT': 5432
-        }
-    }
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+}
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 CACHES = {
