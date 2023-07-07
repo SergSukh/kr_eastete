@@ -5,6 +5,37 @@
 version: '2.2'
 
 services:
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - /var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  web:
+    image: sergsukh/kristall:latest
+    restart: always
+    volumes:
+      - static_value:/app/static/
+      - media_value:/app/media/
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+  nginx:
+    image: nginx:1.21.3-alpine
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
+
+    depends_on:
+      - web
 
   # External dependencies
   redis:
@@ -15,7 +46,7 @@ services:
     depends_on:
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   # Core services
   front:
@@ -27,15 +58,15 @@ services:
       options:
         tag: mailu-front
     ports:
-      - "151.248.116.15:80:80"
-      - "151.248.116.15:443:443"
-      - "151.248.116.15:25:25"
-      - "151.248.116.15:465:465"
-      - "151.248.116.15:587:587"
-      - "151.248.116.15:110:110"
-      - "151.248.116.15:995:995"
-      - "151.248.116.15:143:143"
-      - "151.248.116.15:993:993"
+      - "localhost:80:80"
+      - "localhost:443:443"
+      - "localhost:25:25"
+      - "localhost:465:465"
+      - "localhost:587:587"
+      - "localhost:110:110"
+      - "localhost:995:995"
+      - "localhost:143:143"
+      - "localhost:993:993"
     networks:
       - default
       - webmail
@@ -46,7 +77,7 @@ services:
     depends_on:
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   resolver:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}unbound:${MAILU_VERSION:-2.0}
@@ -54,7 +85,7 @@ services:
     restart: always
     networks:
       default:
-        ipv4_address: 192.168.203.254
+        ipv4_address: localhost
 
   admin:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}admin:${MAILU_VERSION:-2.0}
@@ -71,7 +102,7 @@ services:
       - redis
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   imap:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}dovecot:${MAILU_VERSION:-2.0}
@@ -88,7 +119,7 @@ services:
       - front
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   smtp:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}postfix:${MAILU_VERSION:-2.0}
@@ -105,7 +136,7 @@ services:
       - front
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   oletools:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}oletools:${MAILU_VERSION:-2.0}
@@ -116,7 +147,7 @@ services:
     depends_on:
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   antispam:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}rspamd:${MAILU_VERSION:-2.0}
@@ -140,7 +171,7 @@ services:
       - antivirus
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   # Optional services
   antivirus:
@@ -152,7 +183,7 @@ services:
     depends_on:
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   webdav:
     image: ${DOCKER_ORG:-ghcr.io/mailu}/${DOCKER_PREFIX:-}radicale:${MAILU_VERSION:-2.0}
@@ -174,7 +205,7 @@ services:
       - imap
       - resolver
     dns:
-      - 192.168.203.254
+      - localhost
 
   # Webmail
   webmail:
