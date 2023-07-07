@@ -48,8 +48,8 @@ def get_objs(request):
     objs = []
     for obj in obj_base:
         if (
-            obj.check_param(sq_min, obj.square, sq_max) and
-            obj.check_param(pr_min, obj.price, pr_max)
+            obj.check_param(sq_min, obj.square, sq_max)
+            and obj.check_param(pr_min, obj.price, pr_max)
         ):
             objs.append(obj)
     return ExcelResponse(write_report(objs))
