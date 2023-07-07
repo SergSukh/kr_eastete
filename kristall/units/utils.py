@@ -6,26 +6,25 @@ from .views import get_search_max_param, get_search_min_param
 
 
 def get_header():
-    DATA = [[
+    return [[
         'ТИП ОБЪЕКТА',
         'АДРЕС',
         'ПЛОЩАДЬ',
         'ТИП СДЕЛКИ',
         'СТОИМОСТЬ']
     ]
-    return DATA
 
 
 def write_report(units_list):
-    DATA = get_header()
+    data = get_header()
     for unit in units_list:
-        DATA.append([
+        data.append([
             unit.name,
             unit.adress(),
             unit.square,
             unit.deal,
             unit.price])
-    return DATA
+    return data
 
 
 def get_objs(request):

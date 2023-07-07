@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-
 from units.models import Unit
 from users.validators import PhoneValidator
 
