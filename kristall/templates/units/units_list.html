@@ -13,7 +13,7 @@
         <h1 class="header-content">{{title}}:</h1>
         {% if request.user.is_authenticated and request.user.is_staff %}
         <a class="btn-style section-hero__btn" href="{% url 'units:unit_create' %}"> Добавить объект</a>
-        <a class="btn-style section-hero__btn" href="{% url 'units:get_objs' %}?{{req}}"> Сохранить список</a>
+        {%if req %}<a class="btn-style section-hero__btn" href="{% url 'units:get_objs' %}?{{req}}"> Сохранить список</a>{% endif%}
         {% endif %}
         <ul class="main-content-units">
             {% for unit in page_obj %}
